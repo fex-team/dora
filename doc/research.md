@@ -9,59 +9,59 @@
 ### markdown 在线工具列表
 
 1. https://stackedit.io
-2. http://mahua.jser.me
-3. http://dillimger.io
-4. [bootstrap-markdown](http://toopay.github.io/bootstrap-markdown/)
+1. http://mahua.jser.me
+1. http://dillimger.io
+1. [bootstrap-markdown](http://toopay.github.io/bootstrap-markdown/)
 
 ### https://stackedit.io
 
 优点
 
-    1. 编辑体验好
-    2. 可依赖多种网盘保存文档
-    3. 有完整的导入导出和展示功能
-    4. 有目录导航
+1. 编辑体验好
+1. 可依赖多种网盘保存文档
+1. 有完整的导入导出和展示功能
+1. 有目录导航
 
 缺点
 
-    1. 不支持百度网盘
-    2. 不支持直接上传图片
-    3. 没有工具栏
+1. 不支持百度网盘
+1. 不支持直接上传图片
+1. 没有工具栏
 
 ### http://mahua.jser.me
 
 优点
 
-    1. 支持多套编辑器主题
-    2. 支持四种预览主题
+1. 支持多套编辑器主题
+1. 支持四种预览主题
 
 缺点
 
-    1. 功能比较简单
-    2. 没有工具栏
-    3. 不支持云端保存
+1. 功能比较简单
+1. 没有工具栏
+1. 不支持云端保存
 
 ### http://dillinger.io
 
 优点:
 
-    1. markdown 编辑区域有多套主题
-    2. 支持多个云端保存点
+1. markdown 编辑区域有多套主题
+1. 支持多个云端保存点
 
 缺点:
 
-    1. 没有工具栏
+1. 没有工具栏
 
 
 ### [bootstrap-markdown](http://toopay.github.io/bootstrap-markdown/)
 
 优点
 
-    1. 主要关注以bootstrap的样式风格展示内容
+1. 主要关注以bootstrap的样式风格展示内容
 
 缺点:
 
-    1. 编辑区域只是一个基本的存文本编辑区域
+1. 编辑区域只是一个基本的存文本编辑区域
 
 经过对比 `stackedit.io` 总体体验是做好的，`MdEditor` 可以对比着 `stackedit.io` 做一个好用的 markdown 编辑器
 
@@ -87,7 +87,7 @@ http://sebug.net/node/t-24
 
 #### 基本功能
 
-对比了多个 markdown 编辑器，考虑要做的 `MdEditor` 功能设计如下
+对比了多个md编辑器，考虑要做的 `MdEditor` 功能设计如下
 
 * 标题支持
 * 文本操作
@@ -129,7 +129,7 @@ http://sebug.net/node/t-24
 ### 高级功能
 
 * 实时预览，左右滚动关联，这里需要设计一个算法支持
-* 导出 html、markdown、pdf、txt
+* 导出 html / markdown / pdf / txt
 
 ### 亮点功能(有待调研)
 
