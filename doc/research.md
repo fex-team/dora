@@ -87,7 +87,7 @@ http://sebug.net/node/t-24
 
 #### 基本功能
 
-对比了多个md编辑器，考虑要做的 `MdEditor` 功能设计如下
+对比了多个 markdown 编辑器，考虑要做的 `MdEditor` 功能设计如下
 
 * 标题支持
 * 文本操作
@@ -129,7 +129,7 @@ http://sebug.net/node/t-24
 ### 高级功能
 
 * 实时预览，左右滚动关联，这里需要设计一个算法支持
-* 导出 html / markdown / pdf / txt
+* 导出 html、markdown、pdf、txt
 
 ### 亮点功能(有待调研)
 
