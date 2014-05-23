@@ -1,4 +1,4 @@
-var MdParser = UF.MdParser = UF.createClass("MdParser", {
+var MdParser = MD.MdParser = MD.createClass("MdParser", {
     constructor: function () {
         this.editor = editor;
     }

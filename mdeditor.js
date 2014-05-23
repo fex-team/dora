@@ -9,11 +9,11 @@
             'core/mdeditor.utils.js',
             'core/mdeditor.defaultoptions.js',
             'core/mdeditor.module.js',
-            'core/mdeditor.js',
             'core/editor.js',
             'core/editor.event.js',
             'core/editor.shortcutkeys.js',
             'core/editor.command.js',
+            'core/editor.module.js',
             'core/codeeditor.js',
             'core/richeditor.js',
             'core/mdparser.js'

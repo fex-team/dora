@@ -1,4 +1,4 @@
-var RichEditor = UF.RichEditor = UF.createClass("RichEditor", {
+var RichEditor = MD.RichEditor = MD.createClass("RichEditor", {
     constructor: function (editor) {
         this.editor = editor;
     }
