@@ -1,20 +1,20 @@
 /*modal 类*/
 UM.ui.define('modal', {
     tpl: '<div class="edui-modal" tabindex="-1" >' +
-        '<div class="edui-modal-header">' +
-        '<div class="edui-close" data-hide="modal"></div>' +
-        '<h3 class="edui-title"><%=title%></h3>' +
-        '</div>' +
-        '<div class="edui-modal-body"  style="<%if(width){%>width:<%=width%>px;<%}%>' +
-        '<%if(height){%>height:<%=height%>px;<%}%>">' +
-        ' </div>' +
-        '<% if(cancellabel || oklabel) {%>' +
-        '<div class="edui-modal-footer">' +
-        '<div class="edui-modal-tip"></div>' +
-        '<%if(oklabel){%><div class="edui-btn edui-btn-primary" data-ok="modal"><%=oklabel%></div><%}%>' +
-        '<%if(cancellabel){%><div class="edui-btn" data-hide="modal"><%=cancellabel%></div><%}%>' +
-        '</div>' +
-        '<%}%></div>',
+    '<div class="edui-modal-header">' +
+    '<div class="edui-close" data-hide="modal"></div>' +
+    '<h3 class="edui-title"><%=title%></h3>' +
+    '</div>' +
+    '<div class="edui-modal-body"  style="<%if(width){%>width:<%=width%>px;<%}%>' +
+    '<%if(height){%>height:<%=height%>px;<%}%>">' +
+    ' </div>' +
+    '<% if(cancellabel || oklabel) {%>' +
+    '<div class="edui-modal-footer">' +
+    '<div class="edui-modal-tip"></div>' +
+    '<%if(oklabel){%><div class="edui-btn edui-btn-primary" data-ok="modal"><%=oklabel%></div><%}%>' +
+    '<%if(cancellabel){%><div class="edui-btn" data-hide="modal"><%=cancellabel%></div><%}%>' +
+    '</div>' +
+    '<%}%></div>',
     defaultOpt: {
         title: "",
         cancellabel: "",
@@ -40,7 +40,7 @@ UM.ui.define('modal', {
         me.root().delegate('[data-hide="modal"]', 'click', $.proxy(me.hide, me))
             .delegate('[data-ok="modal"]', 'click', $.proxy(me.ok, me));
 
-        $('[data-hide="modal"],[data-ok="modal"]',me.root()).hover(function(){
+        $('[data-hide="modal"],[data-ok="modal"]', me.root()).hover(function () {
             $(this).toggleClass('edui-hover')
         });
     },
@@ -68,13 +68,13 @@ UM.ui.define('modal', {
                 .trigger('aftershow');
         })
     },
-    showTip: function ( text ) {
-        $( '.edui-modal-tip', this.root() ).html( text ).fadeIn();
+    showTip: function (text) {
+        $('.edui-modal-tip', this.root()).html(text).fadeIn();
     },
-    hideTip: function ( text ) {
-        $( '.edui-modal-tip', this.root() ).fadeOut( function (){
+    hideTip: function (text) {
+        $('.edui-modal-tip', this.root()).fadeOut(function () {
             $(this).html('');
-        } );
+        });
     },
     autoCenter: function () {
         //ie6下不用处理了

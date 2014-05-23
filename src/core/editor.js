@@ -1,7 +1,7 @@
 var Editor = MD.Editor = MD.createClass('Editor', {
     constructor: function (options) {
         this._options = $.extend(window.MDEDITOR_CONFIG || {}, options);
-        this._setDefaultOptions(MD.defaultOptions);
+        this.setDefaultOptions(MD.defaultOptions);
         this._initEvents();
         this._initEditor();
         this._initShortcutKey();
@@ -13,7 +13,7 @@ var Editor = MD.Editor = MD.createClass('Editor', {
         this.codeEditor = new CodeEditor(this);
         this.richEditor = new RichEditor(this);
     },
-    _setDefaultOptions: function (key, val) {
+    setDefaultOptions: function (key, val) {
         var obj = {};
         if (Utils.isString(key)) {
             obj[key] = val;

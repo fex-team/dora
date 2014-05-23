@@ -41,17 +41,17 @@ var Utils = MDeditor.Utils = {
      * } );
      * ```
      */
-    each : function(obj, iterator, context) {
+    each: function (obj, iterator, context) {
         if (obj == null) return;
         if (obj.length === +obj.length) {
             for (var i = 0, l = obj.length; i < l; i++) {
-                if(iterator.call(context, obj[i], i, obj) === false)
+                if (iterator.call(context, obj[i], i, obj) === false)
                     return false;
             }
         } else {
             for (var key in obj) {
                 if (obj.hasOwnProperty(key)) {
-                    if(iterator.call(context, obj[key], key, obj) === false)
+                    if (iterator.call(context, obj[key], key, obj) === false)
                         return false;
                 }
             }
@@ -73,7 +73,7 @@ var Utils = MDeditor.Utils = {
      * newObject.sayHello();
      * ```
      */
-    makeInstance:function (obj) {
+    makeInstance: function (obj) {
         var noop = new Function();
         noop.prototype = obj;
         obj = new noop;
@@ -158,7 +158,7 @@ var Utils = MDeditor.Utils = {
      *
      * ```
      */
-    extend2:function (t) {
+    extend2: function (t) {
         var a = arguments;
         for (var i = 1; i < a.length; i++) {
             var x = a[i];
@@ -201,7 +201,7 @@ var Utils = MDeditor.Utils = {
      * sub.hello("早上好!");
      * ```
      */
-    inherits:function (subClass, superClass) {
+    inherits: function (subClass, superClass) {
         var oldP = subClass.prototype,
             newP = Utils.makeInstance(superClass.prototype);
         Utils.extend(newP, oldP, true);
@@ -252,7 +252,7 @@ var Utils = MDeditor.Utils = {
      *
      * ```
      */
-    bind:function (fn, context) {
+    bind: function (fn, context) {
         return function () {
             return fn.apply(context, arguments);
         };
@@ -307,7 +307,7 @@ var Utils = MDeditor.Utils = {
      * testDefer();
      * ```
      */
-    defer:function (fn, delay, exclusion) {
+    defer: function (fn, delay, exclusion) {
         var timerID;
         return function () {
             if (exclusion) {
@@ -351,7 +351,7 @@ var Utils = MDeditor.Utils = {
      * console.log( MD.Utils.indexOf( arr, item, 5 ) );
      * ```
      */
-    indexOf:function (array, item, start) {
+    indexOf: function (array, item, start) {
         var index = -1;
         start = this.isNumber(start) ? start : 0;
         this.each(array, function (v, i) {
@@ -379,7 +379,7 @@ var Utils = MDeditor.Utils = {
      *
      * ```
      */
-    removeItem:function (array, item) {
+    removeItem: function (array, item) {
         for (var i = 0, l = array.length; i < l; i++) {
             if (array[i] === item) {
                 array.splice(i, 1);
@@ -409,7 +409,7 @@ var Utils = MDeditor.Utils = {
      *
      *  ```
      */
-    trim:function (str) {
+    trim: function (str) {
         return str.replace(/(^[ \t\n\r]+)|([ \t\n\r]+$)/g, '');
     },
 
@@ -442,7 +442,7 @@ var Utils = MDeditor.Utils = {
      *
      * ```
      */
-    listToMap:function (list) {
+    listToMap: function (list) {
         if (!list)return {};
         list = Utils.isArray(list) ? list : list.split(',');
         for (var i = 0, ci, obj = {}; ci = list[i++];) {
@@ -465,17 +465,17 @@ var Utils = MDeditor.Utils = {
      *
      * ```
      */
-    unhtml:function (str, reg) {
+    unhtml: function (str, reg) {
         return str ? str.replace(reg || /[&<">'](?:(amp|lt|quot|gt|#39|nbsp);)?/g, function (a, b) {
             if (b) {
                 return a;
             } else {
                 return {
-                    '<':'&lt;',
-                    '&':'&amp;',
-                    '"':'&quot;',
-                    '>':'&gt;',
-                    "'":'&#39;'
+                    '<': '&lt;',
+                    '&': '&amp;',
+                    '"': '&quot;',
+                    '>': '&gt;',
+                    "'": '&#39;'
                 }[a]
             }
 
@@ -498,15 +498,15 @@ var Utils = MDeditor.Utils = {
      *
      * ```
      */
-    html:function (str) {
+    html: function (str) {
         return str ? str.replace(/&((g|l|quo)t|amp|#39|nbsp);/g, function (m) {
             return {
-                '&lt;':'<',
-                '&amp;':'&',
-                '&quot;':'"',
-                '&gt;':'>',
-                '&#39;':"'",
-                '&nbsp;':' '
+                '&lt;': '<',
+                '&amp;': '&',
+                '&quot;': '"',
+                '&gt;': '>',
+                '&#39;': "'",
+                '&nbsp;': ' '
             }[m]
         }) : '';
     },
@@ -526,10 +526,10 @@ var Utils = MDeditor.Utils = {
      *
      * ```
      */
-    cssStyleToDomStyle:function () {
+    cssStyleToDomStyle: function () {
         var test = document.createElement('div').style,
             cache = {
-                'float':test.cssFloat != undefined ? 'cssFloat' : test.styleFloat != undefined ? 'styleFloat' : 'float'
+                'float': test.cssFloat != undefined ? 'cssFloat' : test.styleFloat != undefined ? 'styleFloat' : 'float'
             };
 
         return function (cssName) {
@@ -676,7 +676,7 @@ var Utils = MDeditor.Utils = {
      *
      * ```
      */
-    isEmptyObject:function (obj) {
+    isEmptyObject: function (obj) {
         if (obj == null) return true;
         if (this.isArray(obj) || this.isString(obj)) return obj.length === 0;
         for (var key in obj) if (obj.hasOwnProperty(key)) return false;
@@ -691,7 +691,7 @@ var Utils = MDeditor.Utils = {
      * @example
      * rgb(255,255,255)  => "#ffffff"
      */
-    fixColor:function (name, value) {
+    fixColor: function (name, value) {
         if (/color/i.test(name) && /rgba?/.test(value)) {
             var array = value.split(",");
             if (array.length > 3)
@@ -711,7 +711,7 @@ var Utils = MDeditor.Utils = {
      * @function
      * @param {String}    val style字符串
      */
-    optCss:function (val) {
+    optCss: function (val) {
         var padding, margin, border;
         val = val.replace(/(padding|margin|border)\-([^:]+):([^;]+);?/gi, function (str, key, name, val) {
             if (val.split(' ').length == 1) {
@@ -772,7 +772,7 @@ var Utils = MDeditor.Utils = {
      *
      * ```
      */
-    transUnitToPx:function (val) {
+    transUnitToPx: function (val) {
         if (!/(pt|cm)/.test(val)) {
             return val
         }
@@ -807,7 +807,7 @@ var Utils = MDeditor.Utils = {
      *
      * ```
      */
-    domReady:function () {
+    domReady: function () {
 
         var fnArr = [];
 
@@ -864,14 +864,14 @@ var Utils = MDeditor.Utils = {
      * @grammar MD.Utils.cssRule('body',document) => 返回指定key的样式，并且指定是哪个document
      * @grammar MD.Utils.cssRule('body','') =>null //清空给定的key值的背景颜色
      */
-    cssRule:browser.ie && browser.version != 11 ? function (key, style, doc) {
+    cssRule: browser.ie && browser.version != 11 ? function (key, style, doc) {
         var indexList, index;
-        if(style === undefined || style && style.nodeType && style.nodeType == 9){
+        if (style === undefined || style && style.nodeType && style.nodeType == 9) {
             //获取样式
             doc = style && style.nodeType && style.nodeType == 9 ? style : (doc || document);
             indexList = doc.indexList || (doc.indexList = {});
             index = indexList[key];
-            if(index !==  undefined){
+            if (index !== undefined) {
                 return doc.styleSheets[index].cssText
             }
             return undefined;
@@ -880,8 +880,8 @@ var Utils = MDeditor.Utils = {
         indexList = doc.indexList || (doc.indexList = {});
         index = indexList[key];
         //清除样式
-        if(style === ''){
-            if(index!== undefined){
+        if (style === '') {
+            if (index !== undefined) {
                 doc.styleSheets[index].cssText = '';
                 delete indexList[key];
                 return true
@@ -890,16 +890,16 @@ var Utils = MDeditor.Utils = {
         }
 
         //添加样式
-        if(index!== undefined){
-            sheetStyle =  doc.styleSheets[index];
-        }else{
+        if (index !== undefined) {
+            sheetStyle = doc.styleSheets[index];
+        } else {
             sheetStyle = doc.createStyleSheet('', index = doc.styleSheets.length);
             indexList[key] = index;
         }
         sheetStyle.cssText = style;
-    }: function (key, style, doc) {
+    } : function (key, style, doc) {
         var head, node;
-        if(style === undefined || style && style.nodeType && style.nodeType == 9){
+        if (style === undefined || style && style.nodeType && style.nodeType == 9) {
             //获取样式
             doc = style && style.nodeType && style.nodeType == 9 ? style : (doc || document);
             node = doc.getElementById(key);
@@ -909,8 +909,8 @@ var Utils = MDeditor.Utils = {
         node = doc.getElementById(key);
 
         //清除样式
-        if(style === ''){
-            if(node){
+        if (style === '') {
+            if (node) {
                 node.parentNode.removeChild(node);
                 return true
             }
@@ -918,20 +918,22 @@ var Utils = MDeditor.Utils = {
         }
 
         //添加样式
-        if(node){
+        if (node) {
             node.innerHTML = style;
-        }else{
+        } else {
             node = doc.createElement('style');
             node.id = key;
             node.innerHTML = style;
             doc.getElementsByTagName('head')[0].appendChild(node);
         }
     },
-    sort:function(array,compareFn){
-        compareFn = compareFn || function(item1, item2){ return item1.localeCompare(item2);};
-        for(var i= 0,len = array.length; i<len; i++){
-            for(var j = i,length = array.length; j<length; j++){
-                if(compareFn(array[i], array[j]) > 0){
+    sort: function (array, compareFn) {
+        compareFn = compareFn || function (item1, item2) {
+            return item1.localeCompare(item2);
+        };
+        for (var i = 0, len = array.length; i < len; i++) {
+            for (var j = i, length = array.length; j < length; j++) {
+                if (compareFn(array[i], array[j]) > 0) {
                     var t = array[i];
                     array[i] = array[j];
                     array[j] = t;
@@ -940,24 +942,24 @@ var Utils = MDeditor.Utils = {
         }
         return array;
     },
-    serializeParam:function (json) {
+    serializeParam: function (json) {
         var strArr = [];
         for (var i in json) {
             //忽略默认的几个参数
-            if(i=="method" || i=="timeout" || i=="async") continue;
+            if (i == "method" || i == "timeout" || i == "async") continue;
             //传递过来的对象和函数不在提交之列
             if (!((typeof json[i]).toLowerCase() == "function" || (typeof json[i]).toLowerCase() == "object")) {
-                strArr.push( encodeURIComponent(i) + "="+encodeURIComponent(json[i]) );
+                strArr.push(encodeURIComponent(i) + "=" + encodeURIComponent(json[i]));
             } else if (Utils.isArray(json[i])) {
                 //支持传数组内容
-                for(var j = 0; j < json[i].length; j++) {
-                    strArr.push( encodeURIComponent(i) + "[]="+encodeURIComponent(json[i][j]) );
+                for (var j = 0; j < json[i].length; j++) {
+                    strArr.push(encodeURIComponent(i) + "[]=" + encodeURIComponent(json[i][j]));
                 }
             }
         }
         return strArr.join("&");
     },
-    formatUrl:function (url) {
+    formatUrl: function (url) {
         var u = url.replace(/&&/g, '&');
         u = u.replace(/\?&/g, '?');
         u = u.replace(/&$/g, '');
@@ -965,7 +967,7 @@ var Utils = MDeditor.Utils = {
         u = u.replace(/&+/g, '&');
         return u;
     },
-    isCrossDomainUrl:function (url) {
+    isCrossDomainUrl: function (url) {
         var a = document.createElement('a');
         a.href = url;
         if (browser.ie) {
@@ -974,15 +976,15 @@ var Utils = MDeditor.Utils = {
         return !(a.protocol == location.protocol && a.hostname == location.hostname &&
         (a.port == location.port || (a.port == '80' && location.port == '') || (a.port == '' && location.port == '80')));
     },
-    clearEmptyAttrs : function(obj){
-        for(var p in obj){
-            if(obj[p] === ''){
+    clearEmptyAttrs: function (obj) {
+        for (var p in obj) {
+            if (obj[p] === '') {
                 delete obj[p]
             }
         }
         return obj;
     },
-    str2json : function(s){
+    str2json: function (s) {
 
         if (!Utils.isString(s)) return null;
         if (window.JSON) {
@@ -992,7 +994,7 @@ var Utils = MDeditor.Utils = {
         }
 
     },
-    json2str : (function(){
+    json2str: (function () {
 
         if (window.JSON) {
 
@@ -1006,7 +1008,7 @@ var Utils = MDeditor.Utils = {
                 "\n": '\\n',
                 "\f": '\\f',
                 "\r": '\\r',
-                '"' : '\\"',
+                '"': '\\"',
                 "\\": '\\\\'
             };
 
@@ -1042,7 +1044,7 @@ var Utils = MDeditor.Utils = {
                         case "unknown":
                             break;
                         default:
-                            if(preComma) {
+                            if (preComma) {
                                 result.push(',');
                             }
                             result.push(Utils.json2str(item));
@@ -1057,7 +1059,7 @@ var Utils = MDeditor.Utils = {
                 return source < 10 ? '0' + source : source;
             }
 
-            function encodeDate(source){
+            function encodeDate(source) {
                 return '"' + source.getFullYear() + "-"
                 + pad(source.getMonth() + 1) + "-"
                 + pad(source.getDate()) + "T"

@@ -1,16 +1,13 @@
 var BaseEditor = MD.createClass("BaseEditor", {
-    constructor: function (editor) {
-        this.editor = editor;
-    },
     init: function (editor) {
         var me = this;
         me.editor = editor;
         me._focusFlag = false;
     },
-    isFocus: function(){
+    isFocus: function () {
         return this._focusFlag;
     },
-    renderTo: function($container){
+    renderTo: function ($container) {
         var me = this;
         me.$container = $container;
         me.$iframe = $('<iframe>').appendTo($container);
@@ -23,3 +20,5 @@ var BaseEditor = MD.createClass("BaseEditor", {
         me.$body.attr('contenteditable', true);
     }
 });
+
+MD.extendClass(BaseEditor, EventBase);

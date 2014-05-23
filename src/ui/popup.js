@@ -1,12 +1,12 @@
 //popup 类
 UM.ui.define('popup', {
-    tpl: '<div class="edui-dropdown-menu edui-popup"'+
-        '<%if(!<%=stopprop%>){%>onmousedown="return false"<%}%>'+
-        '><div class="edui-popup-body" unselectable="on" onmousedown="return false"><%=subtpl%></div>' +
-        '<div class="edui-popup-caret"></div>' +
-        '</div>',
+    tpl: '<div class="edui-dropdown-menu edui-popup"' +
+    '<%if(!<%=stopprop%>){%>onmousedown="return false"<%}%>' +
+    '><div class="edui-popup-body" unselectable="on" onmousedown="return false"><%=subtpl%></div>' +
+    '<div class="edui-popup-caret"></div>' +
+    '</div>',
     defaultOpt: {
-        stopprop:false,
+        stopprop: false,
         subtpl: '',
         width: '',
         height: ''

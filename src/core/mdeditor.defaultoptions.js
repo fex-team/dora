@@ -1,5 +1,5 @@
 //这里只放不是由模块产生的默认参数
-(function (){
+(function () {
 
     var skin = 'cool';
 

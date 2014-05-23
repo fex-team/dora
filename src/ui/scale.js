@@ -1,22 +1,22 @@
 //scale 类
 UM.ui.define('scale', {
     tpl: '<div class="edui-scale" unselectable="on">' +
-        '<span class="edui-scale-hand0"></span>' +
-        '<span class="edui-scale-hand1"></span>' +
-        '<span class="edui-scale-hand2"></span>' +
-        '<span class="edui-scale-hand3"></span>' +
-        '<span class="edui-scale-hand4"></span>' +
-        '<span class="edui-scale-hand5"></span>' +
-        '<span class="edui-scale-hand6"></span>' +
-        '<span class="edui-scale-hand7"></span>' +
-        '</div>',
+    '<span class="edui-scale-hand0"></span>' +
+    '<span class="edui-scale-hand1"></span>' +
+    '<span class="edui-scale-hand2"></span>' +
+    '<span class="edui-scale-hand3"></span>' +
+    '<span class="edui-scale-hand4"></span>' +
+    '<span class="edui-scale-hand5"></span>' +
+    '<span class="edui-scale-hand6"></span>' +
+    '<span class="edui-scale-hand7"></span>' +
+    '</div>',
     defaultOpt: {
         $doc: $(document),
         $wrap: $(document)
     },
     init: function (options) {
-        if(options.$doc) this.defaultOpt.$doc = options.$doc;
-        if(options.$wrap) this.defaultOpt.$wrap = options.$wrap;
+        if (options.$doc) this.defaultOpt.$doc = options.$doc;
+        if (options.$wrap) this.defaultOpt.$wrap = options.$wrap;
         this.root($($.parseTmpl(this.tpl, options)));
         this.initStyle();
         this.startPos = this.prePos = {x: 0, y: 0};
@@ -25,15 +25,15 @@ UM.ui.define('scale', {
     },
     initStyle: function () {
         utils.cssRule('edui-style-scale', '.edui-scale{display:none;position:absolute;border:1px solid #38B2CE;cursor:hand;-webkit-box-sizing: content-box;-moz-box-sizing: content-box;box-sizing: content-box;}' +
-            '.edui-scale span{position:absolute;left:0;top:0;width:7px;height:7px;overflow:hidden;font-size:0px;display:block;background-color:#3C9DD0;}'
-            + '.edui-scale .edui-scale-hand0{cursor:nw-resize;top:0;margin-top:-4px;left:0;margin-left:-4px;}'
-            + '.edui-scale .edui-scale-hand1{cursor:n-resize;top:0;margin-top:-4px;left:50%;margin-left:-4px;}'
-            + '.edui-scale .edui-scale-hand2{cursor:ne-resize;top:0;margin-top:-4px;left:100%;margin-left:-3px;}'
-            + '.edui-scale .edui-scale-hand3{cursor:w-resize;top:50%;margin-top:-4px;left:0;margin-left:-4px;}'
-            + '.edui-scale .edui-scale-hand4{cursor:e-resize;top:50%;margin-top:-4px;left:100%;margin-left:-3px;}'
-            + '.edui-scale .edui-scale-hand5{cursor:sw-resize;top:100%;margin-top:-3px;left:0;margin-left:-4px;}'
-            + '.edui-scale .edui-scale-hand6{cursor:s-resize;top:100%;margin-top:-3px;left:50%;margin-left:-4px;}'
-            + '.edui-scale .edui-scale-hand7{cursor:se-resize;top:100%;margin-top:-3px;left:100%;margin-left:-3px;}');
+        '.edui-scale span{position:absolute;left:0;top:0;width:7px;height:7px;overflow:hidden;font-size:0px;display:block;background-color:#3C9DD0;}'
+        + '.edui-scale .edui-scale-hand0{cursor:nw-resize;top:0;margin-top:-4px;left:0;margin-left:-4px;}'
+        + '.edui-scale .edui-scale-hand1{cursor:n-resize;top:0;margin-top:-4px;left:50%;margin-left:-4px;}'
+        + '.edui-scale .edui-scale-hand2{cursor:ne-resize;top:0;margin-top:-4px;left:100%;margin-left:-3px;}'
+        + '.edui-scale .edui-scale-hand3{cursor:w-resize;top:50%;margin-top:-4px;left:0;margin-left:-4px;}'
+        + '.edui-scale .edui-scale-hand4{cursor:e-resize;top:50%;margin-top:-4px;left:100%;margin-left:-3px;}'
+        + '.edui-scale .edui-scale-hand5{cursor:sw-resize;top:100%;margin-top:-3px;left:0;margin-left:-4px;}'
+        + '.edui-scale .edui-scale-hand6{cursor:s-resize;top:100%;margin-top:-3px;left:50%;margin-left:-4px;}'
+        + '.edui-scale .edui-scale-hand7{cursor:se-resize;top:100%;margin-top:-3px;left:100%;margin-left:-3px;}');
     },
     _eventHandler: function (e) {
         var me = this,
@@ -114,7 +114,7 @@ UM.ui.define('scale', {
     _validScaledProp: function (prop, value) {
         var $ele = this.root(),
             $wrap = this.defaultOpt.$doc,
-            calc = function(val, a, b){
+            calc = function (val, a, b) {
                 return (val + a) > b ? b - a : value;
             };
 
@@ -123,7 +123,7 @@ UM.ui.define('scale', {
             case 'left':
                 return value < 0 ? 0 : calc(value, $ele.width(), $wrap.width());
             case 'top':
-                return value < 0 ? 0 : calc(value, $ele.height(),$wrap.height());
+                return value < 0 ? 0 : calc(value, $ele.height(), $wrap.height());
             case 'width':
                 return value <= 0 ? 1 : calc(value, $ele.offset().left, $wrap.width());
             case 'height':

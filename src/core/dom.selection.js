@@ -9,68 +9,68 @@
  */
 (function () {
 
-    function getBoundaryInformation( range, start ) {
+    function getBoundaryInformation(range, start) {
         var getIndex = domUtils.getNodeIndex;
         range = range.duplicate();
-        range.collapse( start );
+        range.collapse(start);
         var parent = range.parentElement();
         //如果节点里没有子节点，直接退出
-        if ( !parent.hasChildNodes() ) {
-            return  {container:parent, offset:0};
+        if (!parent.hasChildNodes()) {
+            return  {container: parent, offset: 0};
         }
         var siblings = parent.children,
             child,
             testRange = range.duplicate(),
             startIndex = 0, endIndex = siblings.length - 1, index = -1,
             distance;
-        while ( startIndex <= endIndex ) {
-            index = Math.floor( (startIndex + endIndex) / 2 );
+        while (startIndex <= endIndex) {
+            index = Math.floor((startIndex + endIndex) / 2);
             child = siblings[index];
-            testRange.moveToElementText( child );
-            var position = testRange.compareEndPoints( 'StartToStart', range );
-            if ( position > 0 ) {
+            testRange.moveToElementText(child);
+            var position = testRange.compareEndPoints('StartToStart', range);
+            if (position > 0) {
                 endIndex = index - 1;
-            } else if ( position < 0 ) {
+            } else if (position < 0) {
                 startIndex = index + 1;
             } else {
                 //trace:1043
-                return  {container:parent, offset:getIndex( child )};
+                return  {container: parent, offset: getIndex(child)};
             }
         }
-        if ( index == -1 ) {
-            testRange.moveToElementText( parent );
-            testRange.setEndPoint( 'StartToStart', range );
-            distance = testRange.text.replace( /(\r\n|\r)/g, '\n' ).length;
+        if (index == -1) {
+            testRange.moveToElementText(parent);
+            testRange.setEndPoint('StartToStart', range);
+            distance = testRange.text.replace(/(\r\n|\r)/g, '\n').length;
             siblings = parent.childNodes;
-            if ( !distance ) {
+            if (!distance) {
                 child = siblings[siblings.length - 1];
-                return  {container:child, offset:child.nodeValue.length};
+                return  {container: child, offset: child.nodeValue.length};
             }
 
             var i = siblings.length;
-            while ( distance > 0 ){
+            while (distance > 0) {
                 distance -= siblings[ --i ].nodeValue.length;
             }
-            return {container:siblings[i], offset:-distance};
+            return {container: siblings[i], offset: -distance};
         }
-        testRange.collapse( position > 0 );
-        testRange.setEndPoint( position > 0 ? 'StartToStart' : 'EndToStart', range );
-        distance = testRange.text.replace( /(\r\n|\r)/g, '\n' ).length;
-        if ( !distance ) {
+        testRange.collapse(position > 0);
+        testRange.setEndPoint(position > 0 ? 'StartToStart' : 'EndToStart', range);
+        distance = testRange.text.replace(/(\r\n|\r)/g, '\n').length;
+        if (!distance) {
             return  dtd.$empty[child.tagName] || dtd.$nonChild[child.tagName] ?
-            {container:parent, offset:getIndex( child ) + (position > 0 ? 0 : 1)} :
-            {container:child, offset:position > 0 ? 0 : child.childNodes.length}
+            {container: parent, offset: getIndex(child) + (position > 0 ? 0 : 1)} :
+            {container: child, offset: position > 0 ? 0 : child.childNodes.length}
         }
-        while ( distance > 0 ) {
+        while (distance > 0) {
             try {
                 var pre = child;
                 child = child[position > 0 ? 'previousSibling' : 'nextSibling'];
                 distance -= child.nodeValue.length;
-            } catch ( e ) {
-                return {container:parent, offset:getIndex( pre )};
+            } catch (e) {
+                return {container: parent, offset: getIndex(pre)};
             }
         }
-        return  {container:child, offset:position > 0 ? -distance : child.nodeValue.length + distance}
+        return  {container: child, offset: position > 0 ? -distance : child.nodeValue.length + distance}
     }
 
     /**
@@ -79,15 +79,15 @@
      * @param {Range}   range      Range对象
      * @return  {Range}  range       返回转换后的Range对象
      */
-    function transformIERangeToRange( ieRange, range ) {
-        if ( ieRange.item ) {
-            range.selectNode( ieRange.item( 0 ) );
+    function transformIERangeToRange(ieRange, range) {
+        if (ieRange.item) {
+            range.selectNode(ieRange.item(0));
         } else {
-            var bi = getBoundaryInformation( ieRange, true );
-            range.setStart( bi.container, bi.offset );
-            if ( ieRange.compareEndPoints( 'StartToEnd', ieRange ) != 0 ) {
-                bi = getBoundaryInformation( ieRange, false );
-                range.setEnd( bi.container, bi.offset );
+            var bi = getBoundaryInformation(ieRange, true);
+            range.setStart(bi.container, bi.offset);
+            if (ieRange.compareEndPoints('StartToEnd', ieRange) != 0) {
+                bi = getBoundaryInformation(ieRange, false);
+                range.setEnd(bi.container, bi.offset);
             }
         }
         return range;
@@ -98,51 +98,51 @@
      * @param {Selection} sel    Selection对象
      * @return {ieRange}    得到ieRange
      */
-    function _getIERange( sel,txtRange ) {
+    function _getIERange(sel, txtRange) {
         var ieRange;
         //ie下有可能报错
         try {
             ieRange = sel.getNative(txtRange).createRange();
-        } catch ( e ) {
+        } catch (e) {
             return null;
         }
-        var el = ieRange.item ? ieRange.item( 0 ) : ieRange.parentElement();
-        if ( ( el.ownerDocument || el ) === sel.document ) {
+        var el = ieRange.item ? ieRange.item(0) : ieRange.parentElement();
+        if (( el.ownerDocument || el ) === sel.document) {
             return ieRange;
         }
         return null;
     }
 
-    var Selection = MD.dom.Selection = function ( doc,body ) {
+    var Selection = MD.dom.Selection = function (doc, body) {
         var me = this;
         me.document = doc;
         me.body = body;
-        if ( browser.ie9below ) {
-            $( body).on('beforedeactivate', function () {
+        if (browser.ie9below) {
+            $(body).on('beforedeactivate', function () {
                 me._bakIERange = me.getIERange();
-            } ).on('activate', function () {
+            }).on('activate', function () {
                 try {
-                    var ieNativRng =  _getIERange( me );
-                    if ( (!ieNativRng || !me.rangeInBody(ieNativRng)) && me._bakIERange ) {
+                    var ieNativRng = _getIERange(me);
+                    if ((!ieNativRng || !me.rangeInBody(ieNativRng)) && me._bakIERange) {
                         me._bakIERange.select();
                     }
-                } catch ( ex ) {
+                } catch (ex) {
                 }
                 me._bakIERange = null;
-            } );
+            });
         }
     };
 
     Selection.prototype = {
-        hasNativeRange : function(){
+        hasNativeRange: function () {
             var rng;
-            if(!browser.ie || browser.ie9above){
+            if (!browser.ie || browser.ie9above) {
                 var nativeSel = this.getNative();
-                if(!nativeSel.rangeCount){
+                if (!nativeSel.rangeCount) {
                     return false;
                 }
                 rng = nativeSel.getRangeAt(0);
-            }else{
+            } else {
                 rng = _getIERange(this);
             }
             return rng && this.rangeInBody(rng);
@@ -154,11 +154,11 @@
          * @name    MD.dom.Selection.getNative
          * @return {Selection}    获得selection对象
          */
-        getNative:function (txtRange) {
+        getNative: function (txtRange) {
             var doc = this.document;
             try {
-                return !doc ? null : browser.ie9below || txtRange? doc.selection : domUtils.getWindow( doc ).getSelection();
-            } catch ( e ) {
+                return !doc ? null : browser.ie9below || txtRange ? doc.selection : domUtils.getWindow(doc).getSelection();
+            } catch (e) {
                 return null;
             }
         },
@@ -169,19 +169,19 @@
          * @name    MD.dom.Selection.getIERange
          * @return {ieRange}    返回ie原生的Range
          */
-        getIERange:function (txtRange) {
-            var ieRange = _getIERange( this,txtRange );
-            if ( !ieRange  || !this.rangeInBody(ieRange,txtRange)) {
-                if ( this._bakIERange ) {
+        getIERange: function (txtRange) {
+            var ieRange = _getIERange(this, txtRange);
+            if (!ieRange || !this.rangeInBody(ieRange, txtRange)) {
+                if (this._bakIERange) {
                     return this._bakIERange;
                 }
             }
             return ieRange;
         },
-        rangeInBody : function(rng,txtRange){
+        rangeInBody: function (rng, txtRange) {
             var node = browser.ie9below || txtRange ? rng && rng.item ? rng.item() : rng.parentElement() : rng.startContainer;
 
-            return node === this.body || domUtils.inDoc(node,this.body);
+            return node === this.body || domUtils.inDoc(node, this.body);
         },
         /**
          * 缓存当前选区的range和选区的开始节点
@@ -189,20 +189,20 @@
          * @function
          * @name    MD.dom.Selection.cache
          */
-        cache:function () {
+        cache: function () {
             this.clear();
             this._cachedRange = this.getRange();
             this._cachedStartElement = this.getStart();
             this._cachedStartElementPath = this.getStartElementPath();
         },
 
-        getStartElementPath:function () {
-            if ( this._cachedStartElementPath ) {
+        getStartElementPath: function () {
+            if (this._cachedStartElementPath) {
                 return this._cachedStartElementPath;
             }
             var start = this.getStart();
-            if ( start ) {
-                return domUtils.findParents( start, true, null, true )
+            if (start) {
+                return domUtils.findParents(start, true, null, true)
             }
             return [];
         },
@@ -212,13 +212,13 @@
          * @function
          * @name    MD.dom.Selection.clear
          */
-        clear:function () {
+        clear: function () {
             this._cachedStartElementPath = this._cachedRange = this._cachedStartElement = null;
         },
         /**
          * 编辑器是否得到了选区
          */
-        isFocus:function () {
+        isFocus: function () {
             return this.hasNativeRange()
 
         },
@@ -229,55 +229,56 @@
          * @name    MD.dom.Selection.getRange
          * @returns {MD.dom.Range}    得到Range对象
          */
-        getRange:function () {
+        getRange: function () {
             var me = this;
-            function optimze( range ) {
+
+            function optimze(range) {
                 var child = me.body.firstChild,
                     collapsed = range.collapsed;
-                while ( child && child.firstChild ) {
-                    range.setStart( child, 0 );
+                while (child && child.firstChild) {
+                    range.setStart(child, 0);
                     child = child.firstChild;
                 }
-                if ( !range.startContainer ) {
-                    range.setStart( me.body, 0 )
+                if (!range.startContainer) {
+                    range.setStart(me.body, 0)
                 }
-                if ( collapsed ) {
-                    range.collapse( true );
+                if (collapsed) {
+                    range.collapse(true);
                 }
             }
 
-            if ( me._cachedRange != null ) {
+            if (me._cachedRange != null) {
                 return this._cachedRange;
             }
-            var range = new dom.Range( me.document,me.body );
-            if ( browser.ie9below ) {
+            var range = new dom.Range(me.document, me.body);
+            if (browser.ie9below) {
                 var nativeRange = me.getIERange();
-                if ( nativeRange  && this.rangeInBody(nativeRange)) {
+                if (nativeRange && this.rangeInBody(nativeRange)) {
 
-                    try{
-                        transformIERangeToRange( nativeRange, range );
-                    }catch(e){
-                        optimze( range );
+                    try {
+                        transformIERangeToRange(nativeRange, range);
+                    } catch (e) {
+                        optimze(range);
                     }
 
                 } else {
-                    optimze( range );
+                    optimze(range);
                 }
             } else {
                 var sel = me.getNative();
-                if ( sel && sel.rangeCount && me.rangeInBody(sel.getRangeAt( 0 ))) {
-                    var firstRange = sel.getRangeAt( 0 );
-                    var lastRange = sel.getRangeAt( sel.rangeCount - 1 );
-                    range.setStart( firstRange.startContainer, firstRange.startOffset ).setEnd( lastRange.endContainer, lastRange.endOffset );
-                    if ( range.collapsed && domUtils.isBody( range.startContainer ) && !range.startOffset ) {
-                        optimze( range );
+                if (sel && sel.rangeCount && me.rangeInBody(sel.getRangeAt(0))) {
+                    var firstRange = sel.getRangeAt(0);
+                    var lastRange = sel.getRangeAt(sel.rangeCount - 1);
+                    range.setStart(firstRange.startContainer, firstRange.startOffset).setEnd(lastRange.endContainer, lastRange.endOffset);
+                    if (range.collapsed && domUtils.isBody(range.startContainer) && !range.startOffset) {
+                        optimze(range);
                     }
                 } else {
                     //trace:1734 有可能已经不在dom树上了，标识的节点
-                    if ( this._bakRange && (this._bakRange.startContainer === this.body || domUtils.inDoc( this._bakRange.startContainer, this.body )) ){
+                    if (this._bakRange && (this._bakRange.startContainer === this.body || domUtils.inDoc(this._bakRange.startContainer, this.body))) {
                         return this._bakRange;
                     }
-                    optimze( range );
+                    optimze(range);
                 }
             }
 
@@ -291,40 +292,40 @@
          * @name    MD.dom.Selection.getStart
          * @return {Element}     获得开始元素
          */
-        getStart:function () {
-            if ( this._cachedStartElement ) {
+        getStart: function () {
+            if (this._cachedStartElement) {
                 return this._cachedStartElement;
             }
             var range = browser.ie9below ? this.getIERange() : this.getRange(),
                 tmpRange,
                 start, tmp, parent;
-            if ( browser.ie9below ) {
-                if ( !range ) {
+            if (browser.ie9below) {
+                if (!range) {
                     //todo 给第一个值可能会有问题
                     return this.document.body.firstChild;
                 }
                 //control元素
-                if ( range.item ){
-                    return range.item( 0 );
+                if (range.item) {
+                    return range.item(0);
                 }
                 tmpRange = range.duplicate();
                 //修正ie下<b>x</b>[xx] 闭合后 <b>x|</b>xx
-                tmpRange.text.length > 0 && tmpRange.moveStart( 'character', 1 );
-                tmpRange.collapse( 1 );
+                tmpRange.text.length > 0 && tmpRange.moveStart('character', 1);
+                tmpRange.collapse(1);
                 start = tmpRange.parentElement();
                 parent = tmp = range.parentElement();
-                while ( tmp = tmp.parentNode ) {
-                    if ( tmp == start ) {
+                while (tmp = tmp.parentNode) {
+                    if (tmp == start) {
                         start = parent;
                         break;
                     }
                 }
             } else {
                 start = range.startContainer;
-                if ( start.nodeType == 1 && start.hasChildNodes() ){
-                    start = start.childNodes[Math.min( start.childNodes.length - 1, range.startOffset )];
+                if (start.nodeType == 1 && start.hasChildNodes()) {
+                    start = start.childNodes[Math.min(start.childNodes.length - 1, range.startOffset)];
                 }
-                if ( start.nodeType == 3 ){
+                if (start.nodeType == 3) {
                     return start.parentNode;
                 }
             }
@@ -337,10 +338,10 @@
          * @name    MD.dom.Selection.getText
          * @return  {String}    选区中包含的文本
          */
-        getText:function () {
+        getText: function () {
             var nativeSel, nativeRange;
-            if ( this.isFocus() && (nativeSel = this.getNative()) ) {
-                nativeRange = browser.ie9below ? nativeSel.createRange() : nativeSel.getRangeAt( 0 );
+            if (this.isFocus() && (nativeSel = this.getNative())) {
+                nativeRange = browser.ie9below ? nativeSel.createRange() : nativeSel.getRangeAt(0);
                 return browser.ie9below ? nativeRange.text : nativeRange.toString();
             }
             return '';

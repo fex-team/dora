@@ -12,7 +12,6 @@ MD.extendClass(Editor, {
         return 0;
     },
     queryCommandState: function (name) {
-        if (!this.isFocused) return -1;
         return this._queryCommand(name, "State", Utils.argsToArray(1));
     },
     queryCommandValue: function (name) {

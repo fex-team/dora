@@ -1,4 +1,4 @@
-(function(){
+(function () {
 
     var _mdeditorUI = {},
         _activeWidget = null,

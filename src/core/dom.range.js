@@ -36,9 +36,10 @@
             range.startOffset == range.endOffset;
     }
 
-    function selectOneNode(rng){
+    function selectOneNode(rng) {
         return !rng.collapsed && rng.startContainer.nodeType == 1 && rng.startContainer === rng.endContainer && rng.endOffset - rng.startOffset == 1
     }
+
     function setEndPoint(toStart, node, offset, range) {
         //如果node是自闭合标签要处理
         if (node.nodeType == 1 && (dtd.$empty[node.tagName] || dtd.$nonChild[node.tagName])) {
@@ -217,7 +218,7 @@
                     domUtils.remove(fillData);
                     while (tmpNode && domUtils.isEmptyInlineElement(tmpNode) &&
                         //safari的contains有bug
-                    (browser.safari ? !(domUtils.getPosition(tmpNode,excludeNode) & domUtils.POSITION_CONTAINS) : !tmpNode.contains(excludeNode))
+                    (browser.safari ? !(domUtils.getPosition(tmpNode, excludeNode) & domUtils.POSITION_CONTAINS) : !tmpNode.contains(excludeNode))
                         ) {
                         fillData = tmpNode.parentNode;
                         domUtils.remove(tmpNode);
@@ -271,7 +272,7 @@
          * </body>
          * ```
          */
-        cloneContents:function () {
+        cloneContents: function () {
             return this.collapsed ? null : execContentsAction(this, 0);
         },
 
@@ -310,7 +311,7 @@
          * </body>
          * ```
          */
-        deleteContents:function () {
+        deleteContents: function () {
             var txt;
             if (!this.collapsed) {
                 execContentsAction(this, 1);
@@ -366,7 +367,7 @@
          *      </script>
          * </body>
          */
-        extractContents:function () {
+        extractContents: function () {
             return this.collapsed ? null : execContentsAction(this, 2);
         },
 
@@ -412,7 +413,7 @@
          * </script>
          * ```
          */
-        setStart:function (node, offset) {
+        setStart: function (node, offset) {
             return setEndPoint(true, node, offset, this);
         },
 
@@ -424,7 +425,7 @@
          * @see MD.dom.Range:setStart(Node,int)
          * @return { MD.dom.Range } 当前range对象
          */
-        setEnd:function (node, offset) {
+        setEnd: function (node, offset) {
             return setEndPoint(false, node, offset, this);
         },
 
@@ -450,7 +451,7 @@
          * </script>
          * ```
          */
-        setStartAfter:function (node) {
+        setStartAfter: function (node) {
             return this.setStart(node.parentNode, domUtils.getNodeIndex(node) + 1);
         },
 
@@ -462,7 +463,7 @@
          * @see MD.dom.Range:setStartAfter(Node)
          * @return { MD.dom.Range } 当前range对象
          */
-        setStartBefore:function (node) {
+        setStartBefore: function (node) {
             return this.setStart(node.parentNode, domUtils.getNodeIndex(node));
         },
 
@@ -489,7 +490,7 @@
          * </script>
          * ```
          */
-        setEndAfter:function (node) {
+        setEndAfter: function (node) {
             return this.setEnd(node.parentNode, domUtils.getNodeIndex(node) + 1);
         },
 
@@ -501,7 +502,7 @@
          * @see MD.dom.Range:setEndAfter(Node)
          * @return { MD.dom.Range } 当前range对象
          */
-        setEndBefore:function (node) {
+        setEndBefore: function (node) {
             return this.setEnd(node.parentNode, domUtils.getNodeIndex(node));
         },
 
@@ -529,7 +530,7 @@
          * </script>
          * ```
          */
-        setStartAtFirst:function (node) {
+        setStartAtFirst: function (node) {
             return this.setStart(node, 0);
         },
 
@@ -542,7 +543,7 @@
          * @see MD.dom.Range:setStartAtFirst(Node)
          * @return { MD.dom.Range } 当前range对象
          */
-        setStartAtLast:function (node) {
+        setStartAtLast: function (node) {
             return this.setStart(node, node.nodeType == 3 ? node.nodeValue.length : node.childNodes.length);
         },
 
@@ -555,7 +556,7 @@
          * @see MD.dom.Range:setStartAtFirst(Node)
          * @return { MD.dom.Range } 当前range对象
          */
-        setEndAtFirst:function (node) {
+        setEndAtFirst: function (node) {
             return this.setEnd(node, 0);
         },
 
@@ -568,7 +569,7 @@
          * @see MD.dom.Range:setStartAtFirst(Node)
          * @return { MD.dom.Range } 当前range对象
          */
-        setEndAtLast:function (node) {
+        setEndAtLast: function (node) {
             return this.setEnd(node, node.nodeType == 3 ? node.nodeValue.length : node.childNodes.length);
         },
 
@@ -595,7 +596,7 @@
          * </script>
          * ```
          */
-        selectNode:function (node) {
+        selectNode: function (node) {
             return this.setStartBefore(node).setEndAfter(node);
         },
 
@@ -622,7 +623,7 @@
          * </script>
          * ```
          */
-        selectNodeContents:function (node) {
+        selectNodeContents: function (node) {
             return this.setStart(node, 0).setEndAtLast(node);
         },
 
@@ -632,7 +633,7 @@
          * @remind 返回的range是一个全新的range对象， 其内部所有属性与当前被clone的range相同。
          * @return { MD.dom.Range } 当前range对象的一个副本
          */
-        cloneRange:function () {
+        cloneRange: function () {
             var me = this;
             return new Range(me.document).setStart(me.startContainer, me.startOffset).setEnd(me.endContainer, me.endOffset);
 
@@ -684,7 +685,7 @@
          * </script>
          * ```
          */
-        collapse:function (toStart) {
+        collapse: function (toStart) {
             var me = this;
             if (toStart) {
                 me.endContainer = me.startContainer;
@@ -735,12 +736,14 @@
          * @return { MD.dom.Range } 当前range对象
          * @see MD.dom.domUtils.Range:shrinkBoundary()
          */
-        shrinkBoundary:function (ignoreEnd) {
+        shrinkBoundary: function (ignoreEnd) {
             var me = this, child,
                 collapsed = me.collapsed;
-            function check(node){
+
+            function check(node) {
                 return node.nodeType == 1 && !domUtils.isBookmarkNode(node) && !dtd.$empty[node.tagName] && !dtd.$nonChild[node.tagName]
             }
+
             while (me.startContainer.nodeType == 1 //是element
             && (child = me.startContainer.childNodes[me.startOffset]) //子节点也是element
             && check(child)) {
@@ -840,14 +843,14 @@
          * </body>
          * ```
          */
-        getCommonAncestor:function (includeSelf, ignoreTextNode) {
+        getCommonAncestor: function (includeSelf, ignoreTextNode) {
             var me = this,
                 start = me.startContainer,
                 end = me.endContainer;
             if (start === end) {
                 if (includeSelf && selectOneNode(this)) {
                     start = start.childNodes[me.startOffset];
-                    if(start.nodeType == 1)
+                    if (start.nodeType == 1)
                         return start;
                 }
                 //只有在上来就相等的情况下才会出现是文本的情况
@@ -901,7 +904,7 @@
          * </script>
          * ```
          */
-        trimBoundary:function (ignoreEnd) {
+        trimBoundary: function (ignoreEnd) {
             this.txtToElmBoundary();
             var start = this.startContainer,
                 offset = this.startOffset,
@@ -958,7 +961,7 @@
          *                      不论选区是否闭合， 都会执行该操作， 反之， 则不会对闭合的选区执行该操作
          * @return { MD.dom.Range } 当前range对象
          */
-        txtToElmBoundary:function (ignoreCollapsed) {
+        txtToElmBoundary: function (ignoreCollapsed) {
             function adjust(r, c) {
                 var container = r[c + 'Container'],
                     offset = r[c + 'Offset'];
@@ -989,7 +992,7 @@
          * @remind 插入的节点可以是一个DocumentFragment依次插入多个节点
          * @return { MD.dom.Range } 当前range对象
          */
-        insertNode:function (node) {
+        insertNode: function (node) {
             var first = node, length = 1;
             if (node.nodeType == 11) {
                 first = node.firstChild;
@@ -1025,7 +1028,7 @@
          * @return { MD.dom.Range } 当前range对象
          * @see MD.dom.Range:collapse(Boolean)
          */
-        setCursor:function (toEnd, noFillData) {
+        setCursor: function (toEnd, noFillData) {
             return this.collapse(!toEnd).select(noFillData);
         },
 
@@ -1038,7 +1041,7 @@
          *                          end => 结束标记的ID或引用， id => 当前标记的类型， 如果为true，则表示
          *                          返回的记录的类型为ID， 反之则为引用
          */
-        createBookmark:function (serialize, same) {
+        createBookmark: function (serialize, same) {
             var endNode,
                 startNode = this.document.createElement('span');
             startNode.style.cssText = 'display:none;line-height:0px;';
@@ -1055,9 +1058,9 @@
             }
             this.setStartAfter(startNode);
             return {
-                start:serialize ? startNode.id : startNode,
-                end:endNode ? serialize ? endNode.id : endNode : null,
-                id:serialize
+                start: serialize ? startNode.id : startNode,
+                end: endNode ? serialize ? endNode.id : endNode : null,
+                id: serialize
             }
         },
 
@@ -1068,7 +1071,7 @@
          *  @return { MD.dom.Range } 当前range对象
          *  @see MD.dom.Range:createBookmark(Boolean)
          */
-        moveToBookmark:function (bookmark) {
+        moveToBookmark: function (bookmark) {
             var start = bookmark.id ? this.document.getElementById(bookmark.start) : bookmark.start,
                 end = bookmark.end && bookmark.id ? this.document.getElementById(bookmark.end) : bookmark.end;
             this.setStartBefore(start);
@@ -1096,7 +1099,7 @@
          * @param { Boolean } toBlock 是否要求扩大之后的父节点必须是block节点
          * @return { MD.dom.Range } 当前range对象
          */
-        enlarge:function (toBlock, stopFn) {
+        enlarge: function (toBlock, stopFn) {
             var isBody = domUtils.isBody,
                 pre, node, tmp = this.document.createTextNode('');
             if (toBlock) {
@@ -1175,12 +1178,12 @@
             }
             return this;
         },
-        enlargeToBlockElm:function(ignoreEnd){
-            while(!domUtils.isBlockElm(this.startContainer)){
+        enlargeToBlockElm: function (ignoreEnd) {
+            while (!domUtils.isBlockElm(this.startContainer)) {
                 this.setStartBefore(this.startContainer);
             }
-            if(!ignoreEnd){
-                while(!domUtils.isBlockElm(this.endContainer)){
+            if (!ignoreEnd) {
+                while (!domUtils.isBlockElm(this.endContainer)) {
                     this.setEndAfter(this.endContainer);
                 }
             }
@@ -1192,7 +1195,7 @@
          * @return { MD.dom.Range } 当前range对象
          * @see MD.dom.Range:shrinkBoundary()
          */
-        adjustmentBoundary:function () {
+        adjustmentBoundary: function () {
             if (!this.collapsed) {
                 while (!domUtils.isBody(this.startContainer) &&
                 this.startOffset == this.startContainer[this.startContainer.nodeType == 3 ? 'nodeValue' : 'childNodes'].length &&
@@ -1240,7 +1243,7 @@
          * <p>xxxx[<strong style="font-size:12px">xxxx</strong>]x</p>
          * ```
          */
-        applyInlineStyle:function (tagName, attrs, list) {
+        applyInlineStyle: function (tagName, attrs, list) {
             if (this.collapsed)return this;
             this.trimBoundary().enlarge(false,
                 function (node) {
@@ -1324,7 +1327,7 @@
          * @return { MD.dom.Range } 当前的range对象
          * @see MD.dom.Range:removeInlineStyle(String)
          */
-        removeInlineStyle:function (tagNames) {
+        removeInlineStyle: function (tagNames) {
             if (this.collapsed)return this;
             tagNames = utils.isArray(tagNames) ? tagNames : [tagNames];
             this.shrinkBoundary().adjustmentBoundary();
@@ -1390,7 +1393,7 @@
          * @method  getClosedNode
          * @return { Node | NULL } 如果当前选中的是自闭合节点， 则返回该节点， 否则返回NULL
          */
-        getClosedNode:function () {
+        getClosedNode: function () {
             var node;
             if (!this.collapsed) {
                 var range = this.cloneRange().adjustmentBoundary().shrinkBoundary();
@@ -1410,7 +1413,7 @@
          * @return { MD.dom.Range } 返回当前Range对象
          */
         //这里不区分ie9以上，trace:3824
-        select:browser.ie ? function (noFillData, textRange) {
+        select: browser.ie ? function (noFillData, textRange) {
             var nativeRange;
             if (!this.collapsed)
                 this.shrinkBoundary();
@@ -1420,7 +1423,8 @@
                     nativeRange = this.document.body.createControlRange();
                     nativeRange.addElement(node);
                     nativeRange.select();
-                } catch (e) {}
+                } catch (e) {
+                }
                 return this;
             }
             var bookmark = this.createBookmark(),
@@ -1460,16 +1464,18 @@
             }
             return this;
         } : function (notInsertFillData) {
-            function checkOffset(rng){
+            function checkOffset(rng) {
 
-                function check(node,offset,dir){
-                    if(node.nodeType == 3 && node.nodeValue.length < offset){
+                function check(node, offset, dir) {
+                    if (node.nodeType == 3 && node.nodeValue.length < offset) {
                         rng[dir + 'Offset'] = node.nodeValue.length
                     }
                 }
-                check(rng.startContainer,rng.startOffset,'start');
-                check(rng.endContainer,rng.endOffset,'end');
+
+                check(rng.startContainer, rng.startOffset, 'start');
+                check(rng.endContainer, rng.endOffset, 'end');
             }
+
             var win = domUtils.getWindow(this.document),
                 sel = win.getSelection(),
                 txtNode;
@@ -1492,18 +1498,18 @@
                     //<b>|xxxx</b>
                     //<b>xxxx</b>|xxxx
                     //xxxx<b>|</b>
-                    var start = this.startContainer,child = start;
-                    if(start.nodeType == 1){
+                    var start = this.startContainer, child = start;
+                    if (start.nodeType == 1) {
                         child = start.childNodes[this.startOffset];
 
                     }
-                    if( !(start.nodeType == 3 && this.startOffset)  &&
+                    if (!(start.nodeType == 3 && this.startOffset) &&
                         (child ?
                             (!child.previousSibling || child.previousSibling.nodeType != 3)
                             :
                             (!start.lastChild || start.lastChild.nodeType != 3)
                         )
-                    ){
+                    ) {
                         txtNode = this.document.createTextNode(fillChar);
                         //跟着前边走
                         this.insertNode(txtNode);
@@ -1515,20 +1521,20 @@
                     }
                 }
                 var nativeRange = this.document.createRange();
-                if(this.collapsed && browser.opera && this.startContainer.nodeType == 1){
+                if (this.collapsed && browser.opera && this.startContainer.nodeType == 1) {
                     var child = this.startContainer.childNodes[this.startOffset];
-                    if(!child){
+                    if (!child) {
                         //往前靠拢
                         child = this.startContainer.lastChild;
-                        if( child && domUtils.isBr(child)){
+                        if (child && domUtils.isBr(child)) {
                             this.setStartBefore(child).collapse(true);
                         }
-                    }else{
+                    } else {
                         //向后靠拢
-                        while(child && domUtils.isBlockElm(child)){
-                            if(child.nodeType == 1 && child.childNodes[0]){
+                        while (child && domUtils.isBlockElm(child)) {
+                            if (child.nodeType == 1 && child.childNodes[0]) {
                                 child = child.childNodes[0]
-                            }else{
+                            } else {
                                 break;
                             }
                         }
@@ -1559,7 +1565,7 @@
          * @param { Number } offset 距离range开始位置处的偏移量， 如果为正数， 则向下偏移， 反之， 则向上偏移
          * @return { MD.dom.Range } 当前Range对象
          */
-        scrollToView:function (win, offset) {
+        scrollToView: function (win, offset) {
             win = win ? window : domUtils.getWindow(this.document);
             var me = this,
                 span = me.document.createElement('span');
@@ -1577,11 +1583,11 @@
          * @method inFillChar
          * @return { Boolean } 如果是占位符返回true，否则返回false
          */
-        inFillChar : function(){
+        inFillChar: function () {
             var start = this.startContainer;
-            if(this.collapsed && start.nodeType == 3
-                && start.nodeValue.replace(new RegExp('^' + domUtils.fillChar),'').length + 1 == start.nodeValue.length
-            ){
+            if (this.collapsed && start.nodeType == 3
+                && start.nodeValue.replace(new RegExp('^' + domUtils.fillChar), '').length + 1 == start.nodeValue.length
+            ) {
                 return true;
             }
             return false;
@@ -1611,61 +1617,64 @@
          * </body>
          * ```
          */
-        createAddress : function(ignoreEnd,ignoreTxt){
-            var addr = {},me = this;
+        createAddress: function (ignoreEnd, ignoreTxt) {
+            var addr = {}, me = this;
 
-            function getAddress(isStart){
+            function getAddress(isStart) {
                 var node = isStart ? me.startContainer : me.endContainer;
-                var parents = domUtils.findParents(node,true,function(node){return !domUtils.isBody(node)}),
+                var parents = domUtils.findParents(node, true, function (node) {
+                        return !domUtils.isBody(node)
+                    }),
                     addrs = [];
-                for(var i = 0,ci;ci = parents[i++];){
-                    addrs.push(domUtils.getNodeIndex(ci,ignoreTxt));
+                for (var i = 0, ci; ci = parents[i++];) {
+                    addrs.push(domUtils.getNodeIndex(ci, ignoreTxt));
                 }
                 var firstIndex = 0;
 
-                if(ignoreTxt){
-                    if(node.nodeType == 3){
+                if (ignoreTxt) {
+                    if (node.nodeType == 3) {
                         var tmpNode = node.previousSibling;
-                        while(tmpNode && tmpNode.nodeType == 3){
-                            firstIndex += tmpNode.nodeValue.replace(fillCharReg,'').length;
+                        while (tmpNode && tmpNode.nodeType == 3) {
+                            firstIndex += tmpNode.nodeValue.replace(fillCharReg, '').length;
                             tmpNode = tmpNode.previousSibling;
                         }
-                        firstIndex +=  (isStart ? me.startOffset : me.endOffset)// - (fillCharReg.test(node.nodeValue) ? 1 : 0 )
-                    }else{
-                        node =  node.childNodes[ isStart ? me.startOffset : me.endOffset];
-                        if(node){
-                            firstIndex = domUtils.getNodeIndex(node,ignoreTxt);
-                        }else{
+                        firstIndex += (isStart ? me.startOffset : me.endOffset)// - (fillCharReg.test(node.nodeValue) ? 1 : 0 )
+                    } else {
+                        node = node.childNodes[ isStart ? me.startOffset : me.endOffset];
+                        if (node) {
+                            firstIndex = domUtils.getNodeIndex(node, ignoreTxt);
+                        } else {
                             node = isStart ? me.startContainer : me.endContainer;
                             var first = node.firstChild;
-                            while(first){
-                                if(domUtils.isFillChar(first)){
+                            while (first) {
+                                if (domUtils.isFillChar(first)) {
                                     first = first.nextSibling;
                                     continue;
                                 }
                                 firstIndex++;
-                                if(first.nodeType == 3){
-                                    while( first && first.nodeType == 3){
+                                if (first.nodeType == 3) {
+                                    while (first && first.nodeType == 3) {
                                         first = first.nextSibling;
                                     }
-                                }else{
+                                } else {
                                     first = first.nextSibling;
                                 }
                             }
                         }
                     }
 
-                }else{
-                    firstIndex = isStart ? domUtils.isFillChar(node) ? 0 : me.startOffset  : me.endOffset
+                } else {
+                    firstIndex = isStart ? domUtils.isFillChar(node) ? 0 : me.startOffset : me.endOffset
                 }
-                if(firstIndex < 0){
+                if (firstIndex < 0) {
                     firstIndex = 0;
                 }
                 addrs.push(firstIndex);
                 return addrs;
             }
+
             addr.startAddress = getAddress(true);
-            if(!ignoreEnd){
+            if (!ignoreEnd) {
                 addr.endAddress = me.collapsed ? [].concat(addr.startAddress) : getAddress();
             }
             return addr;
@@ -1698,36 +1707,38 @@
          * </body>
          * ```
          */
-        moveToAddress : function(addr,ignoreEnd){
+        moveToAddress: function (addr, ignoreEnd) {
             var me = this;
-            function getNode(address,isStart){
+
+            function getNode(address, isStart) {
                 var tmpNode = me.document.body,
-                    parentNode,offset;
-                for(var i= 0,ci,l=address.length;i<l;i++){
+                    parentNode, offset;
+                for (var i = 0, ci, l = address.length; i < l; i++) {
                     ci = address[i];
                     parentNode = tmpNode;
                     tmpNode = tmpNode.childNodes[ci];
-                    if(!tmpNode){
+                    if (!tmpNode) {
                         offset = ci;
                         break;
                     }
                 }
-                if(isStart){
-                    if(tmpNode){
+                if (isStart) {
+                    if (tmpNode) {
                         me.setStartBefore(tmpNode)
-                    }else{
-                        me.setStart(parentNode,offset)
+                    } else {
+                        me.setStart(parentNode, offset)
                     }
-                }else{
-                    if(tmpNode){
+                } else {
+                    if (tmpNode) {
                         me.setEndBefore(tmpNode)
-                    }else{
-                        me.setEnd(parentNode,offset)
+                    } else {
+                        me.setEnd(parentNode, offset)
                     }
                 }
             }
-            getNode(addr.startAddress,true);
-            !ignoreEnd && addr.endAddress &&  getNode(addr.endAddress);
+
+            getNode(addr.startAddress, true);
+            !ignoreEnd && addr.endAddress && getNode(addr.endAddress);
             return me;
         },
 
@@ -1737,10 +1748,10 @@
          * @param { MD.dom.Range } 需要判断的Range对象
          * @return { Boolean } 如果给定的Range对象与当前Range对象表示的是同一个选区， 则返回true， 否则返回false
          */
-        equals : function(rng){
-            for(var p in this){
-                if(this.hasOwnProperty(p)){
-                    if(this[p] !== rng[p])
+        equals: function (rng) {
+            for (var p in this) {
+                if (this.hasOwnProperty(p)) {
+                    if (this[p] !== rng[p])
                         return false
                 }
             }
@@ -1828,14 +1839,14 @@
          * </script>
          * ```
          */
-        traversal:function(doFn,filterFn){
+        traversal: function (doFn, filterFn) {
             if (this.collapsed)
                 return this;
             var bookmark = this.createBookmark(),
                 end = bookmark.end,
                 current = domUtils.getNextDomNode(bookmark.start, false, filterFn);
             while (current && current !== end && (domUtils.getPosition(current, end) & domUtils.POSITION_PRECEDING)) {
-                var tmpNode = domUtils.getNextDomNode(current,false,filterFn);
+                var tmpNode = domUtils.getNextDomNode(current, false, filterFn);
                 doFn(current);
                 current = tmpNode;
             }

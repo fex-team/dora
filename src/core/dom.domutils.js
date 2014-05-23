@@ -26,20 +26,20 @@ function getDomNode(node, start, ltr, startFromChild, fn, guard) {
     return tmpNode;
 }
 var attrFix = ie && browser.version < 9 ? {
-        tabindex:"tabIndex",
-        readonly:"readOnly",
-        "for":"htmlFor",
-        "class":"className",
-        maxlength:"maxLength",
-        cellspacing:"cellSpacing",
-        cellpadding:"cellPadding",
-        rowspan:"rowSpan",
-        colspan:"colSpan",
-        usemap:"useMap",
-        frameborder:"frameBorder"
+        tabindex: "tabIndex",
+        readonly: "readOnly",
+        "for": "htmlFor",
+        "class": "className",
+        maxlength: "maxLength",
+        cellspacing: "cellSpacing",
+        cellpadding: "cellPadding",
+        rowspan: "rowSpan",
+        colspan: "colSpan",
+        usemap: "useMap",
+        frameborder: "frameBorder"
     } : {
-        tabindex:"tabIndex",
-        readonly:"readOnly"
+        tabindex: "tabIndex",
+        readonly: "readOnly"
     },
     styleBlock = Utils.listToMap([
         '-webkit-box', '-moz-box', 'block' ,
@@ -50,27 +50,27 @@ var attrFix = ie && browser.version < 9 ? {
     ]);
 var domUtils = MD.dom.domUtils = {
     //节点常量
-    NODE_ELEMENT:1,
-    NODE_DOCUMENT:9,
-    NODE_TEXT:3,
-    NODE_COMMENT:8,
-    NODE_DOCUMENT_FRAGMENT:11,
+    NODE_ELEMENT: 1,
+    NODE_DOCUMENT: 9,
+    NODE_TEXT: 3,
+    NODE_COMMENT: 8,
+    NODE_DOCUMENT_FRAGMENT: 11,
 
     //位置关系
-    POSITION_IDENTICAL:0,
-    POSITION_DISCONNECTED:1,
-    POSITION_FOLLOWING:2,
-    POSITION_PRECEDING:4,
-    POSITION_IS_CONTAINED:8,
-    POSITION_CONTAINS:16,
+    POSITION_IDENTICAL: 0,
+    POSITION_DISCONNECTED: 1,
+    POSITION_FOLLOWING: 2,
+    POSITION_PRECEDING: 4,
+    POSITION_IS_CONTAINED: 8,
+    POSITION_CONTAINS: 16,
     //ie6使用其他的会有一段空白出现
-    fillChar:ie && browser.version == '6' ? '\ufeff' : '\u200B',
+    fillChar: ie && browser.version == '6' ? '\ufeff' : '\u200B',
     //-------------------------Node部分--------------------------------
-    keys:{
-        /*Backspace*/ 8:1, /*Delete*/ 46:1,
-        /*Shift*/ 16:1, /*Ctrl*/ 17:1, /*Alt*/ 18:1,
-        37:1, 38:1, 39:1, 40:1,
-        13:1 /*enter*/
+    keys: {
+        /*Backspace*/ 8: 1, /*Delete*/ 46: 1,
+        /*Shift*/ 16: 1, /*Ctrl*/ 17: 1, /*Alt*/ 18: 1,
+        37: 1, 38: 1, 39: 1, 40: 1,
+        13: 1 /*enter*/
     },
     /**
      * 获取节点A相对于节点B的位置关系
@@ -119,7 +119,7 @@ var domUtils = MD.dom.domUtils = {
      * }
      * ```
      */
-    getPosition:function (nodeA, nodeB) {
+    getPosition: function (nodeA, nodeB) {
         // 如果两个节点是同一个节点
         if (nodeA === nodeB) {
             // domUtils.POSITION_IDENTICAL
@@ -198,12 +198,12 @@ var domUtils = MD.dom.domUtils = {
      *
      * ```
      */
-    getNodeIndex:function (node, ignoreTextNode) {
+    getNodeIndex: function (node, ignoreTextNode) {
         var preNode = node,
             i = 0;
         while (preNode = preNode.previousSibling) {
             if (ignoreTextNode && preNode.nodeType == 3) {
-                if(preNode.nodeType != preNode.nextSibling.nodeType ){
+                if (preNode.nodeType != preNode.nextSibling.nodeType) {
                     i++;
                 }
                 continue;
@@ -234,7 +234,7 @@ var domUtils = MD.dom.domUtils = {
      *
      * ```
      */
-    inDoc:function (node, doc) {
+    inDoc: function (node, doc) {
         return domUtils.getPosition(node, doc) == 10;
     },
     /**
@@ -295,7 +295,7 @@ var domUtils = MD.dom.domUtils = {
      * </body>
      * ```
      */
-    findParent:function (node, filterFn, includeSelf) {
+    findParent: function (node, filterFn, includeSelf) {
         if (node && !domUtils.isBody(node)) {
             node = includeSelf ? node : node.parentNode;
             while (node) {
@@ -339,7 +339,7 @@ var domUtils = MD.dom.domUtils = {
      * console.log( queryTarget === node );
      * ```
      */
-    findParentByTagName:function (node, tagNames, includeSelf, excludeFn) {
+    findParentByTagName: function (node, tagNames, includeSelf, excludeFn) {
         tagNames = Utils.listToMap(Utils.isArray(tagNames) ? tagNames : [tagNames]);
         return domUtils.findParent(node, function (node) {
             return tagNames[node.tagName] && !(excludeFn && excludeFn(node));
@@ -364,7 +364,7 @@ var domUtils = MD.dom.domUtils = {
      * @param { Boolean } includeSelf 查找的结果中是否允许包含当前查找的节点对象
      * @return { Array } 给定节点的祖先节点数组
      */
-    findParents:function (node, includeSelf, filterFn, closerFirst) {
+    findParents: function (node, includeSelf, filterFn, closerFirst) {
         var parents = includeSelf && ( filterFn && filterFn(node) || !filterFn ) ? [node] : [];
         while (node = domUtils.findParent(node, filterFn)) {
             parents.push(node);
@@ -379,8 +379,8 @@ var domUtils = MD.dom.domUtils = {
      * @param { Node } newNode 新插入的节点， 该节点将置于目标节点之后
      * @return { Node } 新插入的节点
      */
-    insertAfter:function (node, newNode) {
-        return node.nextSibling ? node.parentNode.insertBefore(newNode, node.nextSibling):
+    insertAfter: function (node, newNode) {
+        return node.nextSibling ? node.parentNode.insertBefore(newNode, node.nextSibling) :
             node.parentNode.appendChild(newNode);
     },
 
@@ -420,7 +420,7 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    remove:function (node, keepChildren) {
+    remove: function (node, keepChildren) {
         var parent = node.parentNode,
             child;
         if (parent) {
@@ -484,10 +484,10 @@ var domUtils = MD.dom.domUtils = {
      * @return { Node | NULL } 如果找满足条件的节点， 则返回该节点， 否则返回NULL
      * @see UE.dom.domUtils.getNextDomNode(Node)
      */
-    getNextDomNode:function (node, startFromChild, filterFn, guard) {
+    getNextDomNode: function (node, startFromChild, filterFn, guard) {
         return getDomNode(node, 'firstChild', 'nextSibling', startFromChild, filterFn, guard);
     },
-    getPreDomNode:function (node, startFromChild, filterFn, guard) {
+    getPreDomNode: function (node, startFromChild, filterFn, guard) {
         return getDomNode(node, 'lastChild', 'previousSibling', startFromChild, filterFn, guard);
     },
     /**
@@ -506,7 +506,7 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    isBookmarkNode:function (node) {
+    isBookmarkNode: function (node) {
         return node.nodeType == 1 && node.id && /^_baidu_bookmark_/i.test(node.id);
     },
     /**
@@ -520,7 +520,7 @@ var domUtils = MD.dom.domUtils = {
      * console.log( UE.dom.domUtils.getWindow( document.body ) === window );
      * ```
      */
-    getWindow:function (node) {
+    getWindow: function (node) {
         var doc = node.ownerDocument || node;
         return doc.defaultView || doc.parentWindow;
     },
@@ -538,7 +538,7 @@ var domUtils = MD.dom.domUtils = {
      * console.log( commonAncestor.tagName.toLowerCase() === 'body' );
      * ```
      */
-    getCommonAncestor:function (nodeA, nodeB) {
+    getCommonAncestor: function (nodeA, nodeB) {
         if (nodeA === nodeB)
             return nodeA;
         var parentsA = [nodeA] , parentsB = [nodeB], parent = nodeA, i = -1;
@@ -609,17 +609,18 @@ var domUtils = MD.dom.domUtils = {
      * 则这些兄弟节点将被删除
      * @see UE.dom.domUtils.clearEmptySibling(Node)
      */
-    clearEmptySibling:function (node, ignoreNext, ignorePre) {
+    clearEmptySibling: function (node, ignoreNext, ignorePre) {
         function clear(next, dir) {
             var tmpNode;
             while (next && !domUtils.isBookmarkNode(next) && (domUtils.isEmptyInlineElement(next)
                 //这里不能把空格算进来会吧空格干掉，出现文字间的空格丢掉了
-                || !new RegExp('[^\t\n\r' + domUtils.fillChar + ']').test(next.nodeValue) )) {
+            || !new RegExp('[^\t\n\r' + domUtils.fillChar + ']').test(next.nodeValue) )) {
                 tmpNode = next[dir];
                 domUtils.remove(next);
                 next = tmpNode;
             }
         }
+
         !ignoreNext && clear(node.nextSibling, 'nextSibling');
         !ignorePre && clear(node.previousSibling, 'previousSibling');
     },
@@ -639,7 +640,7 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    split:function (node, offset) {
+    split: function (node, offset) {
         var doc = node.ownerDocument;
         if (browser.ie && offset == node.nodeValue.length) {
             var next = doc.createTextNode('');
@@ -671,7 +672,7 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    isWhitespace:function (node) {
+    isWhitespace: function (node) {
         return !new RegExp('[^ \t\n\r' + domUtils.fillChar + ']').test(node.nodeValue);
     },
     /**
@@ -688,14 +689,14 @@ var domUtils = MD.dom.domUtils = {
      * console.log( 'test的坐标为： ', location.x, ',', location.y );
      * ```
      */
-    getXY:function (element) {
+    getXY: function (element) {
         var x = 0, y = 0;
         while (element.offsetParent) {
             y += element.offsetTop;
             x += element.offsetLeft;
             element = element.offsetParent;
         }
-        return { 'x':x, 'y':y};
+        return { 'x': x, 'y': y};
     },
     /**
      * 为元素element绑定原生DOM事件，type为事件类型，handler为处理函数
@@ -724,7 +725,7 @@ var domUtils = MD.dom.domUtils = {
      * });
      * ```
      */
-    on:function (element, type, handler) {
+    on: function (element, type, handler) {
 
         var types = Utils.isArray(type) ? type : Utils.trim(type).split(/\s+/),
             k = types.length;
@@ -735,15 +736,15 @@ var domUtils = MD.dom.domUtils = {
             } else {
                 if (!handler._d) {
                     handler._d = {
-                        els : []
+                        els: []
                     };
                 }
-                var key = type + handler.toString(),index = Utils.indexOf(handler._d.els,element);
+                var key = type + handler.toString(), index = Utils.indexOf(handler._d.els, element);
                 if (!handler._d[key] || index == -1) {
-                    if(index == -1){
+                    if (index == -1) {
                         handler._d.els.push(element);
                     }
-                    if(!handler._d[key]){
+                    if (!handler._d[key]) {
                         handler._d[key] = function (evt) {
                             return handler.call(evt.srcElement, evt || window.event);
                         };
@@ -783,7 +784,7 @@ var domUtils = MD.dom.domUtils = {
      * });
      * ```
      */
-    un:function (element, type, handler) {
+    un: function (element, type, handler) {
         var types = Utils.isArray(type) ? type : Utils.trim(type).split(/\s+/),
             k = types.length;
         if (k) while (k--) {
@@ -792,13 +793,14 @@ var domUtils = MD.dom.domUtils = {
                 element.removeEventListener(type, handler, false);
             } else {
                 var key = type + handler.toString();
-                try{
+                try {
                     element.detachEvent('on' + type, handler._d ? handler._d[key] : handler);
-                }catch(e){}
+                } catch (e) {
+                }
                 if (handler._d && handler._d[key]) {
-                    var index = Utils.indexOf(handler._d.els,element);
-                    if(index!=-1){
-                        handler._d.els.splice(index,1);
+                    var index = Utils.indexOf(handler._d.els, element);
+                    if (index != -1) {
+                        handler._d.els.splice(index, 1);
                     }
                     handler._d.els.length == 0 && delete handler._d[key];
                 }
@@ -832,7 +834,7 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    isSameElement:function (nodeA, nodeB) {
+    isSameElement: function (nodeA, nodeB) {
         if (nodeA.tagName != nodeB.tagName) {
             return false;
         }
@@ -907,7 +909,7 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    isSameStyle:function (nodeA, nodeB) {
+    isSameStyle: function (nodeA, nodeB) {
         var styleA = nodeA.style.cssText.replace(/( ?; ?)/g, ';').replace(/( ?: ?)/g, ':'),
             styleB = nodeB.style.cssText.replace(/( ?; ?)/g, ';').replace(/( ?: ?)/g, ':');
         if (browser.opera) {
@@ -967,7 +969,7 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    isBlockElm:function (node) {
+    isBlockElm: function (node) {
         return node.nodeType == 1 && (dtd.$block[node.tagName] || styleBlock[domUtils.getComputedStyle(node, 'display')]) && !dtd.$nonChild[node.tagName];
     },
     /**
@@ -981,7 +983,7 @@ var domUtils = MD.dom.domUtils = {
      * console.log( UE.dom.domUtils.isBody( document.body ) );
      * ```
      */
-    isBody:function (node) {
+    isBody: function (node) {
         return  node && node.nodeType == 1 && node.tagName.toLowerCase() == 'body';
     },
     /**
@@ -1013,7 +1015,7 @@ var domUtils = MD.dom.domUtils = {
      *
      * ```
      */
-    breakParent:function (node, parent) {
+    breakParent: function (node, parent) {
         var tmpNode,
             parentClone = node,
             clone = node,
@@ -1060,7 +1062,7 @@ var domUtils = MD.dom.domUtils = {
      * <b>xx<i></i></b> => 0
      * ```
      */
-    isEmptyInlineElement:function (node) {
+    isEmptyInlineElement: function (node) {
         if (node.nodeType != 1 || !dtd.$removeEmpty[ node.tagName ]) {
             return 0;
         }
@@ -1072,7 +1074,7 @@ var domUtils = MD.dom.domUtils = {
             }
             if (node.nodeType == 1 && !domUtils.isEmptyInlineElement(node) ||
                 node.nodeType == 3 && !domUtils.isWhitespace(node)
-                ) {
+            ) {
                 return 0;
             }
             node = node.nextSibling;
@@ -1104,13 +1106,14 @@ var domUtils = MD.dom.domUtils = {
      *      console.log( node.childNodes.length );
      * ```
      */
-    trimWhiteTextNode:function (node) {
+    trimWhiteTextNode: function (node) {
         function remove(dir) {
             var child;
             while ((child = node[dir]) && child.nodeType == 3 && domUtils.isWhitespace(child)) {
                 node.removeChild(child);
             }
         }
+
         remove('firstChild');
         remove('lastChild');
     },
@@ -1125,7 +1128,7 @@ var domUtils = MD.dom.domUtils = {
      * ==> UE.dom.domUtils.mergeChild(node,'span')
      * <p><span style="font-size:12px;">xxaaxx</span></p>
      */
-    mergeChild:function (node, tagName, attrs) {
+    mergeChild: function (node, tagName, attrs) {
         var list = domUtils.getElementsByTagName(node, node.tagName.toLowerCase());
         for (var i = 0, ci; ci = list[i++];) {
             if (!ci.parentNode || domUtils.isBookmarkNode(ci)) {
@@ -1169,17 +1172,19 @@ var domUtils = MD.dom.domUtils = {
      * @param { String } tagName 需要查找的节点的tagName， 多个tagName以空格分割
      * @return { Array } 符合条件的节点集合
      */
-    getElementsByTagName:function (node, name,filter) {
-        if(filter && Utils.isString(filter)){
-           var className = filter;
-           filter =  function(node){return domUtils.hasClass(node,className)}
+    getElementsByTagName: function (node, name, filter) {
+        if (filter && Utils.isString(filter)) {
+            var className = filter;
+            filter = function (node) {
+                return domUtils.hasClass(node, className)
+            }
         }
-        name = Utils.trim(name).replace(/[ ]{2,}/g,' ').split(' ');
+        name = Utils.trim(name).replace(/[ ]{2,}/g, ' ').split(' ');
         var arr = [];
-        for(var n = 0,ni;ni=name[n++];){
+        for (var n = 0, ni; ni = name[n++];) {
             var list = node.getElementsByTagName(ni);
             for (var i = 0, ci; ci = list[i++];) {
-                if(!filter || filter(ci))
+                if (!filter || filter(ci))
                     arr.push(ci);
             }
         }
@@ -1213,7 +1218,7 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    mergeToParent:function (node) {
+    mergeToParent: function (node) {
         var parent = node.parentNode;
         while (parent && dtd.$removeEmpty[parent.tagName]) {
             if (parent.tagName == node.tagName || parent.tagName == 'A') {//针对a标签单独处理
@@ -1295,7 +1300,7 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    mergeSibling:function (node, ignorePre, ignoreNext) {
+    mergeSibling: function (node, ignorePre, ignoreNext) {
         function merge(rtl, start, node) {
             var next;
             if ((next = node[rtl]) && !domUtils.isBookmarkNode(next) && next.nodeType == 1 && domUtils.isSameElement(node, next)) {
@@ -1309,6 +1314,7 @@ var domUtils = MD.dom.domUtils = {
                 domUtils.remove(next);
             }
         }
+
         !ignorePre && merge('previousSibling', 'firstChild', node);
         !ignoreNext && merge('nextSibling', 'lastChild', node);
     },
@@ -1323,7 +1329,7 @@ var domUtils = MD.dom.domUtils = {
      * UE.dom.domUtils.unSelectable( document.body );
      * ```
      */
-    unSelectable:ie && browser.ie9below || browser.opera ? function (node) {
+    unSelectable: ie && browser.ie9below || browser.opera ? function (node) {
         //for ie9
         node.onselectstart = function () {
             return false;
@@ -1394,8 +1400,8 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    removeAttributes:function (node, attrNames) {
-        attrNames = Utils.isArray(attrNames) ? attrNames : Utils.trim(attrNames).replace(/[ ]{2,}/g,' ').split(' ');
+    removeAttributes: function (node, attrNames) {
+        attrNames = Utils.isArray(attrNames) ? attrNames : Utils.trim(attrNames).replace(/[ ]{2,}/g, ' ').split(' ');
         for (var i = 0, ci; ci = attrNames[i++];) {
             ci = attrFix[ci] || ci;
             switch (ci) {
@@ -1431,7 +1437,7 @@ var domUtils = MD.dom.domUtils = {
      *
      * ```
      */
-    createElement:function (doc, tag, attrs) {
+    createElement: function (doc, tag, attrs) {
         return domUtils.setAttributes(doc.createElement(tag), attrs)
     },
     /**
@@ -1456,9 +1462,9 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      *
      */
-    setAttributes:function (node, attrs) {
+    setAttributes: function (node, attrs) {
         for (var attr in attrs) {
-            if(attrs.hasOwnProperty(attr)){
+            if (attrs.hasOwnProperty(attr)) {
                 var value = attrs[attr];
                 switch (attr) {
                     case 'class':
@@ -1504,20 +1510,21 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    getComputedStyle:function (element, styleName) {
+    getComputedStyle: function (element, styleName) {
         //一下的属性单独处理
         var pros = 'width height top left';
 
-        if(pros.indexOf(styleName) > -1){
-            return element['offset' + styleName.replace(/^\w/,function(s){return s.toUpperCase()})] + 'px';
+        if (pros.indexOf(styleName) > -1) {
+            return element['offset' + styleName.replace(/^\w/, function (s) {
+                return s.toUpperCase()
+            })] + 'px';
         }
         //忽略文本节点
         if (element.nodeType == 3) {
             element = element.parentNode;
         }
         //ie下font-size若body下定义了font-size，则从currentStyle里会取到这个font-size. 取不到实际值，故此修改.
-        if (browser.ie && browser.version < 9 && styleName == 'font-size' && !element.style.fontSize &&
-            !dtd.$empty[element.tagName] && !dtd.$nonChild[element.tagName]) {
+        if (browser.ie && browser.version < 9 && styleName == 'font-size' && !element.style.fontSize && !dtd.$empty[element.tagName] && !dtd.$nonChild[element.tagName]) {
             var span = element.ownerDocument.createElement('span');
             span.style.cssText = 'padding:0;border:0;font-family:simsun;';
             span.innerHTML = '.';
@@ -1578,17 +1585,17 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    removeClasses:function (elm, classNames) {
+    removeClasses: function (elm, classNames) {
         classNames = Utils.isArray(classNames) ? classNames :
-            Utils.trim(classNames).replace(/[ ]{2,}/g,' ').split(' ');
-        for(var i = 0,ci,cls = elm.className;ci=classNames[i++];){
-            cls = cls.replace(new RegExp('\\b' + ci + '\\b'),'')
+            Utils.trim(classNames).replace(/[ ]{2,}/g, ' ').split(' ');
+        for (var i = 0, ci, cls = elm.className; ci = classNames[i++];) {
+            cls = cls.replace(new RegExp('\\b' + ci + '\\b'), '')
         }
-        cls = Utils.trim(cls).replace(/[ ]{2,}/g,' ');
-        if(cls){
+        cls = Utils.trim(cls).replace(/[ ]{2,}/g, ' ');
+        if (cls) {
             elm.className = cls;
-        }else{
-            domUtils.removeAttributes(elm,['class']);
+        } else {
+            domUtils.removeAttributes(elm, ['class']);
         }
     },
     /**
@@ -1634,11 +1641,11 @@ var domUtils = MD.dom.domUtils = {
      * <script>
      * ```
      */
-    addClass:function (elm, classNames) {
-        if(!elm)return;
-        classNames = Utils.trim(classNames).replace(/[ ]{2,}/g,' ').split(' ');
-        for(var i = 0,ci,cls = elm.className;ci=classNames[i++];){
-            if(!new RegExp('\\b' + ci + '\\b').test(cls)){
+    addClass: function (elm, classNames) {
+        if (!elm)return;
+        classNames = Utils.trim(classNames).replace(/[ ]{2,}/g, ' ').split(' ');
+        for (var i = 0, ci, cls = elm.className; ci = classNames[i++];) {
+            if (!new RegExp('\\b' + ci + '\\b').test(cls)) {
                 cls += ' ' + ci;
             }
         }
@@ -1687,13 +1694,13 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    hasClass:function (element, className) {
-        if(Utils.isRegExp(className)){
+    hasClass: function (element, className) {
+        if (Utils.isRegExp(className)) {
             return className.test(element.className)
         }
-        className = Utils.trim(className).replace(/[ ]{2,}/g,' ').split(' ');
-        for(var i = 0,ci,cls = element.className;ci=className[i++];){
-            if(!new RegExp('\\b' + ci + '\\b','i').test(cls)){
+        className = Utils.trim(className).replace(/[ ]{2,}/g, ' ').split(' ');
+        for (var i = 0, ci, cls = element.className; ci = className[i++];) {
+            if (!new RegExp('\\b' + ci + '\\b', 'i').test(cls)) {
                 return false;
             }
         }
@@ -1709,7 +1716,7 @@ var domUtils = MD.dom.domUtils = {
      * UE.dom.domUtils.preventDefault( evt );
      * ```
      */
-    preventDefault:function (evt) {
+    preventDefault: function (evt) {
         evt.preventDefault ? evt.preventDefault() : (evt.returnValue = false);
     },
     /**
@@ -1733,18 +1740,18 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    removeStyle:function (element, name) {
-        if(browser.ie ){
+    removeStyle: function (element, name) {
+        if (browser.ie) {
             //针对color先单独处理一下
-            if(name == 'color'){
+            if (name == 'color') {
                 name = '(^|;)' + name;
             }
-            element.style.cssText = element.style.cssText.replace(new RegExp(name + '[^:]*:[^;]+;?','ig'),'')
-        }else{
+            element.style.cssText = element.style.cssText.replace(new RegExp(name + '[^:]*:[^;]+;?', 'ig'), '')
+        } else {
             if (element.style.removeProperty) {
-                element.style.removeProperty (name);
-            }else {
-                element.style.removeAttribute (Utils.cssStyleToDomStyle(name));
+                element.style.removeProperty(name);
+            } else {
+                element.style.removeAttribute(Utils.cssStyleToDomStyle(name));
             }
         }
 
@@ -1777,7 +1784,7 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    getStyle:function (element, name) {
+    getStyle: function (element, name) {
         var value = element.style[ Utils.cssStyleToDomStyle(name) ];
         return Utils.fixColor(name, value);
     },
@@ -1805,10 +1812,10 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    setStyle:function (element, name, value) {
+    setStyle: function (element, name, value) {
         element.style[Utils.cssStyleToDomStyle(name)] = value;
-        if(!Utils.trim(element.style.cssText)){
-            this.removeAttributes(element,'style')
+        if (!Utils.trim(element.style.cssText)) {
+            this.removeAttributes(element, 'style')
         }
     },
     /**
@@ -1836,7 +1843,7 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    setStyles:function (element, styles) {
+    setStyles: function (element, styles) {
         for (var name in styles) {
             if (styles.hasOwnProperty(name)) {
                 domUtils.setStyle(element, name, styles[name]);
@@ -1848,7 +1855,7 @@ var domUtils = MD.dom.domUtils = {
      * @private
      * @method removeDirtyAttr
      */
-    removeDirtyAttr:function (node) {
+    removeDirtyAttr: function (node) {
         for (var i = 0, ci, nodes = node.getElementsByTagName('*'); ci = nodes[i++];) {
             ci.removeAttribute('_moz_dirty');
         }
@@ -1898,7 +1905,7 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    getChildCount:function (node, fn) {
+    getChildCount: function (node, fn) {
         var count = 0, first = node.firstChild;
         fn = fn || function () {
             return 1;
@@ -1922,12 +1929,12 @@ var domUtils = MD.dom.domUtils = {
      * UE.dom.domUtils.isEmptyNode( document.body );
      * ```
      */
-    isEmptyNode:function (node) {
+    isEmptyNode: function (node) {
         return !node.firstChild || domUtils.getChildCount(node, function (node) {
             return  !domUtils.isBr(node) && !domUtils.isBookmarkNode(node) && !domUtils.isWhitespace(node)
         }) == 0
     },
-    clearSelectedArr:function (nodes) {
+    clearSelectedArr: function (nodes) {
         var node;
         while (node = nodes.pop()) {
             domUtils.removeAttributes(node, ['class']);
@@ -1940,27 +1947,27 @@ var domUtils = MD.dom.domUtils = {
      * @param    {window}   win      window对象
      * @param    {Number}    offsetTop    距离上方的偏移量
      */
-    scrollToView:function (node, win, offsetTop) {
+    scrollToView: function (node, win, offsetTop) {
         var getViewPaneSize = function () {
                 var doc = win.document,
                     mode = doc.compatMode == 'CSS1Compat';
                 return {
-                    width:( mode ? doc.documentElement.clientWidth : doc.body.clientWidth ) || 0,
-                    height:( mode ? doc.documentElement.clientHeight : doc.body.clientHeight ) || 0
+                    width: ( mode ? doc.documentElement.clientWidth : doc.body.clientWidth ) || 0,
+                    height: ( mode ? doc.documentElement.clientHeight : doc.body.clientHeight ) || 0
                 };
             },
             getScrollPosition = function (win) {
                 if ('pageXOffset' in win) {
                     return {
-                        x:win.pageXOffset || 0,
-                        y:win.pageYOffset || 0
+                        x: win.pageXOffset || 0,
+                        y: win.pageYOffset || 0
                     };
                 }
                 else {
                     var doc = win.document;
                     return {
-                        x:doc.documentElement.scrollLeft || doc.body.scrollLeft || 0,
-                        y:doc.documentElement.scrollTop || doc.body.scrollTop || 0
+                        x: doc.documentElement.scrollLeft || doc.body.scrollLeft || 0,
+                        y: doc.documentElement.scrollTop || doc.body.scrollTop || 0
                     };
                 }
             };
@@ -1980,7 +1987,7 @@ var domUtils = MD.dom.domUtils = {
      * @param { Node } node 需要判断的节点对象
      * @return { Boolean } 给定的节点是否是br节点
      */
-    isBr:function (node) {
+    isBr: function (node) {
         return node.nodeType == 1 && node.tagName == 'BR';
     },
     /**
@@ -1991,29 +1998,29 @@ var domUtils = MD.dom.domUtils = {
      * @param { Boolean } isInStart 是否从节点内容的开始位置匹配
      * @returns { Boolean } 节点是否是填充节点
      */
-    isFillChar:function (node,isInStart) {
-        if(node.nodeType != 3)
+    isFillChar: function (node, isInStart) {
+        if (node.nodeType != 3)
             return false;
         var text = node.nodeValue;
-        if(isInStart){
+        if (isInStart) {
             return new RegExp('^' + domUtils.fillChar).test(text)
         }
-        return !text.replace(new RegExp(domUtils.fillChar,'g'), '').length
+        return !text.replace(new RegExp(domUtils.fillChar, 'g'), '').length
     },
-    isStartInblock:function (range) {
+    isStartInblock: function (range) {
         var tmpRange = range.cloneRange(),
             flag = 0,
             start = tmpRange.startContainer,
             tmp;
-        if(start.nodeType == 1 && start.childNodes[tmpRange.startOffset]){
+        if (start.nodeType == 1 && start.childNodes[tmpRange.startOffset]) {
             start = start.childNodes[tmpRange.startOffset];
             var pre = start.previousSibling;
-            while(pre && domUtils.isFillChar(pre)){
+            while (pre && domUtils.isFillChar(pre)) {
                 start = pre;
                 pre = pre.previousSibling;
             }
         }
-        if(this.isFillChar(start,true) && tmpRange.startOffset == 1){
+        if (this.isFillChar(start, true) && tmpRange.startOffset == 1) {
             tmpRange.setStartBefore(start);
             start = tmpRange.startContainer;
         }
@@ -2077,8 +2084,8 @@ var domUtils = MD.dom.domUtils = {
      * @param { RegExp } reg 对内容执行判断的正则表达式对象
      * @return { Boolean } 是否是空元素
      */
-    isEmptyBlock:function (node,reg) {
-        if(node.nodeType != 1)
+    isEmptyBlock: function (node, reg) {
+        if (node.nodeType != 1)
             return 0;
         reg = reg || new RegExp('[ \xa0\t\r\n' + domUtils.fillChar + ']', 'g');
 
@@ -2119,7 +2126,7 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    setViewportOffset:function (element, offset) {
+    setViewportOffset: function (element, offset) {
         var left = parseInt(element.style.left) | 0;
         var top = parseInt(element.style.top) | 0;
         var rect = element.getBoundingClientRect();
@@ -2157,7 +2164,7 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    fillNode:function (doc, node) {
+    fillNode: function (doc, node) {
         var tmpNode = browser.ie ? doc.createTextNode(domUtils.fillChar) : doc.createElement('br');
         node.innerHTML = '';
         node.appendChild(tmpNode);
@@ -2225,7 +2232,7 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    moveChild:function (src, tag, dir) {
+    moveChild: function (src, tag, dir) {
         while (src.firstChild) {
             if (dir && tag.firstChild) {
                 tag.insertBefore(src.lastChild, tag.firstChild);
@@ -2256,7 +2263,7 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    hasNoAttributes:function (node) {
+    hasNoAttributes: function (node) {
         return browser.ie ? /^<\w+\s*?>/.test(node.outerHTML) : node.attributes.length == 0;
     },
 
@@ -2268,7 +2275,7 @@ var domUtils = MD.dom.domUtils = {
      * @remind 辅助节点是指编辑器要完成工作临时添加的节点， 在输出的时候将会从编辑器内移除， 不会影响最终的结果。
      * @return { Boolean } 给定的节点是否是一个辅助节点
      */
-    isCustomeNode:function (node) {
+    isCustomeNode: function (node) {
         return node.nodeType == 1 && node.getAttribute('_ue_custom_node_');
     },
 
@@ -2290,8 +2297,8 @@ var domUtils = MD.dom.domUtils = {
      * </script>
      * ```
      */
-    isTagNode:function (node, tagNames) {
-        return node.nodeType == 1 && new RegExp('\\b' + node.tagName + '\\b','i').test(tagNames)
+    isTagNode: function (node, tagNames) {
+        return node.nodeType == 1 && new RegExp('\\b' + node.tagName + '\\b', 'i').test(tagNames)
     },
 
     /**
@@ -2360,18 +2367,18 @@ var domUtils = MD.dom.domUtils = {
      * console.log( node.nodeName );
      * ```
      */
-    filterNodeList : function(nodelist,filter,forAll){
+    filterNodeList: function (nodelist, filter, forAll) {
         var results = [];
-        if(!Utils.isFunction(filter)){
+        if (!Utils.isFunction(filter)) {
             var str = filter;
-            filter = function(n){
-                return Utils.indexOf(Utils.isArray(str) ? str:str.split(' '), n.tagName.toLowerCase()) != -1
+            filter = function (n) {
+                return Utils.indexOf(Utils.isArray(str) ? str : str.split(' '), n.tagName.toLowerCase()) != -1
             };
         }
-        Utils.each(nodelist,function(n){
+        Utils.each(nodelist, function (n) {
             filter(n) && results.push(n)
         });
-        return results.length  == 0 ? null : results.length == 1 || !forAll ? results[0] : results
+        return results.length == 0 ? null : results.length == 1 || !forAll ? results[0] : results
     },
 
     /**
@@ -2381,28 +2388,29 @@ var domUtils = MD.dom.domUtils = {
      * @param node 需要检测的节点对象
      * @return { Number } 如果给定的选取range对象是在node内部的最末端， 则返回1, 否则返回0
      */
-    isInNodeEndBoundary : function (rng,node){
+    isInNodeEndBoundary: function (rng, node) {
         var start = rng.startContainer;
-        if(start.nodeType == 3 && rng.startOffset != start.nodeValue.length){
+        if (start.nodeType == 3 && rng.startOffset != start.nodeValue.length) {
             return 0;
         }
-        if(start.nodeType == 1 && rng.startOffset != start.childNodes.length){
+        if (start.nodeType == 1 && rng.startOffset != start.childNodes.length) {
             return 0;
         }
-        while(start !== node){
-            if(start.nextSibling){
+        while (start !== node) {
+            if (start.nextSibling) {
                 return 0
-            };
+            }
+            ;
             start = start.parentNode;
         }
         return 1;
     },
-    isBoundaryNode : function (node,dir){
+    isBoundaryNode: function (node, dir) {
         var tmp;
-        while(!domUtils.isBody(node)){
+        while (!domUtils.isBody(node)) {
             tmp = node;
             node = node.parentNode;
-            if(tmp !== node[dir]){
+            if (tmp !== node[dir]) {
                 return false;
             }
         }

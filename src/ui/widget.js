@@ -1,8 +1,8 @@
 //对jquery的扩展
 $.parseTmpl = function parse(str, data) {
-    var tmpl = 'var __p=[],print=function(){__p.push.apply(__p,arguments);};' + 'with(obj||{}){__p.push(\'' + str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/<%=([\s\S]+?)%>/g,function (match, code) {
+    var tmpl = 'var __p=[],print=function(){__p.push.apply(__p,arguments);};' + 'with(obj||{}){__p.push(\'' + str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/<%=([\s\S]+?)%>/g, function (match, code) {
             return "'," + code.replace(/\\'/g, "'") + ",'";
-        }).replace(/<%([\s\S]+?)%>/g,function (match, code) {
+        }).replace(/<%([\s\S]+?)%>/g, function (match, code) {
             return "');" + code.replace(/\\'/g, "'").replace(/[\r\n\t]/g, ' ') + "__p.push('";
         }).replace(/\r/g, '\\r').replace(/\n/g, '\\n').replace(/\t/g, '\\t') + "');}return __p.join('');";
     var func = new Function('obj', tmpl);
@@ -78,12 +78,12 @@ function _createClass(ClassObj, properties, supperClass) {
     );
     ClassObj.prototype.supper = (MD.ui[supperClass] || _widget).prototype;
     //父class的defaultOpt 合并
-    if( MD.ui[supperClass] && MD.ui[supperClass].prototype.defaultOpt ) {
+    if (MD.ui[supperClass] && MD.ui[supperClass].prototype.defaultOpt) {
 
         var parentDefaultOptions = MD.ui[supperClass].prototype.defaultOpt,
             subDefaultOptions = ClassObj.prototype.defaultOpt;
 
-        ClassObj.prototype.defaultOpt = $.extend( {}, parentDefaultOptions, subDefaultOptions || {} );
+        ClassObj.prototype.defaultOpt = $.extend({}, parentDefaultOptions, subDefaultOptions || {});
 
     }
     return ClassObj
@@ -142,17 +142,17 @@ MD.ui = {
             } else {
                 $el && obj.root($el);
                 obj.init && obj.init(!options || $.isPlainObject(options) ? $.extend2(options || {}, obj.defaultOpt || {}, true) : options);
-                try{
+                try {
                     obj.root().find('a').click(function (evt) {
                         evt.preventDefault()
                     });
-                }catch(e){
+                } catch (e) {
                 }
 
                 return obj.root().mdui(obj);
             }
 
-        },properties, supperClass);
+        }, properties, supperClass);
 
         mergeToJQ(ClassObj, className);
     }
