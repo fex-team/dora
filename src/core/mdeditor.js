@@ -29,6 +29,7 @@ var MDeditor =
                     }
                     return instanceMap[ id ] || this.createEditor(target, options);
                 },
+                dom: {},
                 //挂接多语言
                 LANG: {}
             };

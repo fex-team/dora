@@ -8,32 +8,19 @@ MD.extendClass(Editor, {
             $richBody = me.richEditor.$body;
 
         /* 鼠标事件 */
-        $codeBody.on('click mousedown mouseup mousemove mouseover mouseout contextmenu selectstart', me._codeProxyDomEvent(me.codeEditor));
-        $richBody.on('click mousedown mouseup mousemove mouseover mouseout contextmenu selectstart', me._richProxyDomEvent(me.richEditor));
+        $codeBody.on('click mousedown mouseup mousemove mouseover mouseout contextmenu selectstart', me._getProxyDomEvent(me.codeEditor));
+        $richBody.on('click mousedown mouseup mousemove mouseover mouseout contextmenu selectstart', me._getProxyDomEvent(me.richEditor));
 
     },
     _getProxyDomEvent: function(target){
+        var me = this;
         return function (evt) {
-            var me = this;
-            if (evt.originalEvent) {
-                evt.targetEditor = target;
-                /* 同时触发 tree.click 等事件 */
-                me.fire(p + '.' + evt.type.replace(/^on/, ''), evt);
-            }
-            return this.fire(evt.type.replace(/^on/, ''), evt);
+            return me.fire.call(me, evt.type.replace(/^on/, ''), evt);
         };
     },
     _listen: function (type, callback) {
         var callbacks = this._eventCallbacks[ type ] || ( this._eventCallbacks[ type ] = [] );
         callbacks.push(callback);
-    },
-    setFocus: function () {
-        this.isFocused = true;
-        this.fire('focus');
-    },
-    setBlur: function () {
-        this.isFocused = false;
-        this.fire('blur');
     },
     on: function (name, callback) {
         var types = name.split(' ');
