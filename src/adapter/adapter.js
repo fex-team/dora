@@ -13,6 +13,7 @@
         },
         _createContainer: function (id) {
             var $container = $('<div class="mdui-container"></div>');
+            var $toolbar = $.mduitoolbar().appendTo($container);
             var $codeeditor = $('<div class="mdui-codeeditor"></div>').appendTo($container);
             var $richeditor = $('<div class="mdui-richeditor"></div>').appendTo($container);
 
@@ -20,16 +21,13 @@
 
             return {
                 $container: $container,
+                $toolbar: $toolbar,
                 $codeeditor: $codeeditor,
                 $richeditor: $richeditor
             };
         },
-        _createToolbar: function (editor) {
+        _createToolbar: function (editor, $toolbar) {
             var toolbars = editor.option('toolbars');
-
-            var $toolbar = $.mduitoolbar();
-            editor.$container.append($toolbar);
-            editor.$toolbar = $toolbar;
 
             if (toolbars && toolbars.length) {
                 var btns = [];
@@ -85,14 +83,17 @@
             });
         },
         getMDeditor: function (id, options) {
+            var txt = $('#' + id).text();
+
             var doms = this._createContainer(id),
                 editor = this.getEditor(id, options);
 
             editor.$container = doms.$container;
+            editor.$toolbar = doms.$toolbar;
             editor.codeEditor.renderTo(doms.$codeeditor);
             editor.richEditor.renderTo(doms.$richeditor);
 
-            this._createToolbar(editor);
+            this._createToolbar(editor, doms.$toolbar);
             this._createMessageHolder(editor);
 
             editor._initDomEvent();

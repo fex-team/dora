@@ -1,0 +1,129 @@
+.mdui-btn-toolbar .mdui-btn .mdui-icon-source {
+    background-position:-260px -0px;
+}
+.mdui-btn-toolbar .mdui-btn .mdui-icon-undo {
+    background-position: -160px 0;
+}
+.mdui-btn-toolbar .mdui-btn .mdui-icon-redo {
+    background-position: -100px 0;
+}
+.mdui-btn-toolbar  .mdui-btn .mdui-icon-bold{
+    background-position: 0 0;
+}
+.mdui-btn-toolbar  .mdui-btn .mdui-icon-italic {
+    background-position: -60px 0;
+}
+.mdui-btn-toolbar  .mdui-btn .mdui-icon-underline  {
+    background-position: -140px 0
+}
+.mdui-btn-toolbar .mdui-btn .mdui-icon-strikethrough {
+    background-position: -120px 0;
+}
+
+.mdui-btn-toolbar .mdui-btn .mdui-icon-superscript {
+    background-position: -620px 0;
+}
+.mdui-btn-toolbar .mdui-btn .mdui-icon-subscript {
+    background-position:  -600px 0;
+}
+.mdui-btn-toolbar .mdui-btn .mdui-icon-font, .mdui-btn-toolbar .mdui-btn .mdui-icon-forecolor {
+    background-position: -720px 0;
+}
+
+.mdui-btn-toolbar .mdui-btn .mdui-icon-backcolor {
+    background-position: -760px 0;
+}
+
+.mdui-btn-toolbar .mdui-btn .mdui-icon-insertorderedlist {
+    background-position: -80px 0;
+}
+.mdui-btn-toolbar .mdui-btn .mdui-icon-insertunorderedlist {
+    background-position:   -20px 0;
+}
+.mdui-btn-toolbar .mdui-btn .mdui-icon-selectall {
+    background-position: -400px -20px;
+}
+.mdui-btn-toolbar .mdui-btn .mdui-icon-cleardoc {
+    background-position: -520px 0;
+}
+.mdui-btn-toolbar .mdui-btn .mdui-icon-paragraph {
+    background-position: -140px 0;
+}
+
+.mdui-btn-toolbar .mdui-btn .mdui-icon-fontfamily {
+    background-position: -140px 0;
+}
+
+.mdui-btn-toolbar .mdui-btn .mdui-icon-fontsize {
+    background-position: -140px 0;
+}
+
+.mdui-btn-toolbar .mdui-btn .mdui-icon-justifyleft {
+    background-position: -460px 0;
+}
+
+.mdui-btn-toolbar .mdui-btn .mdui-icon-justifycenter {
+    background-position: -420px 0;
+}
+
+.mdui-btn-toolbar .mdui-btn .mdui-icon-justifyright {
+    background-position:-480px 0;
+}
+
+.mdui-btn-toolbar .mdui-btn .mdui-icon-justifyjustify {
+    background-position: -440px 0;
+}
+
+.mdui-btn-toolbar .mdui-btn .mdui-icon-link {
+    background-position: -500px 0;
+}
+
+.mdui-btn-toolbar .mdui-btn .mdui-icon-unlink {
+    background-position: -640px 0;
+}
+
+.mdui-btn-toolbar .mdui-btn .mdui-icon-image {
+    background-position: -380px 0;
+}
+
+.mdui-btn-toolbar .mdui-btn .mdui-icon-emotion {
+    background-position: -60px -20px;
+}
+.mdui-btn-toolbar .mdui-btn .mdui-icon-video {
+    background-position: -320px -20px;
+}
+
+.mdui-btn-toolbar .mdui-btn .mdui-icon-map {
+    background-position:  -40px -40px;
+}
+
+.mdui-btn-toolbar .mdui-btn .mdui-icon-gmap {
+    background-position:  -260px -40px;
+}
+.mdui-btn-toolbar .mdui-btn .mdui-icon-horizontal {
+    background-position: -360px 0;
+}
+
+.mdui-btn-toolbar .mdui-btn .mdui-icon-print {
+    background-position: -440px -20px;
+}
+.mdui-btn-toolbar .mdui-btn .mdui-icon-preview {
+    background-position: -420px -20px;
+}
+
+.mdui-btn-toolbar .mdui-btn-fullscreen{
+    float:right;
+}
+.mdui-btn-toolbar .mdui-btn .mdui-icon-fullscreen {
+    background-position: -100px -20px;
+}
+
+.mdui-btn-toolbar .mdui-btn .mdui-icon-removeformat {
+    background-position: -580px 0;
+}
+.mdui-btn-toolbar .mdui-btn .mdui-icon-drafts {
+    background-position: -560px 0;
+}
+.mdui-btn-toolbar .mdui-btn .mdui-icon-formula {
+    background-position: -80px -20px;
+}

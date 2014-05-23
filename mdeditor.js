@@ -24,10 +24,12 @@
             'core/codeeditor.js',
             'core/richeditor.js',
             'core/mdparser.js',
-            'modules/bold.js',
+            'modules/basestyle.js',
             'adapter/adapter.js',
+            'adapter/button.js',
             'ui/widget.js',
             'ui/toolbar.js',
+            'ui/button.js',
             'lang/zh-cn/zh-cn.js'
         ],
         baseURL = 'src/';

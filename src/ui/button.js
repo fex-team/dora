@@ -1,9 +1,9 @@
 //button 类
-UM.ui.define('button', {
-    tpl: '<<%if(!texttype){%>div class="edui-btn edui-btn-<%=icon%> <%if(name){%>edui-btn-name-<%=name%><%}%>" unselectable="on" onmousedown="return false" <%}else{%>a class="edui-text-btn"<%}%><% if(title) {%> data-original-title="<%=title%>" <%};%>> ' +
-    '<% if(icon) {%><div unselectable="on" class="edui-icon-<%=icon%> edui-icon"></div><% }; %><%if(text) {%><span unselectable="on" onmousedown="return false" class="edui-button-label"><%=text%></span><%}%>' +
-    '<%if(caret && text){%><span class="edui-button-spacing"></span><%}%>' +
-    '<% if(caret) {%><span unselectable="on" onmousedown="return false" class="edui-caret"></span><% };%></<%if(!texttype){%>div<%}else{%>a<%}%>>',
+MD.ui.define('button', {
+    tpl: '<<%if(!texttype){%>div class="mdui-btn mdui-btn-<%=icon%> <%if(name){%>mdui-btn-name-<%=name%><%}%>" unselectable="on" onmousedown="return false" <%}else{%>a class="mdui-text-btn"<%}%><% if(title) {%> data-original-title="<%=title%>" <%};%>> ' +
+    '<% if(icon) {%><div unselectable="on" class="mdui-icon-<%=icon%> mdui-icon"></div><% }; %><%if(text) {%><span unselectable="on" onmousedown="return false" class="mdui-button-label"><%=text%></span><%}%>' +
+    '<%if(caret && text){%><span class="mdui-button-spacing"></span><%}%>' +
+    '<% if(caret) {%><span unselectable="on" onmousedown="return false" class="mdui-caret"></span><% };%></<%if(!texttype){%>div<%}else{%>a<%}%>>',
     defaultOpt: {
         text: '',
         title: '',
@@ -23,8 +23,8 @@ UM.ui.define('button', {
             });
 
         me.root().hover(function () {
-            if (!me.root().hasClass("edui-disabled")) {
-                me.root().toggleClass('edui-hover')
+            if (!me.root().hasClass("mdui-disabled")) {
+                me.root().toggleClass('mdui-hover')
             }
         })
 
@@ -39,40 +39,40 @@ UM.ui.define('button', {
     },
     label: function (text) {
         if (text === undefined) {
-            return this.root().find('.edui-button-label').text();
+            return this.root().find('.mdui-button-label').text();
         } else {
-            this.root().find('.edui-button-label').text(text);
+            this.root().find('.mdui-button-label').text(text);
             return this;
         }
     },
     disabled: function (state) {
         if (state === undefined) {
-            return this.root().hasClass('edui-disabled')
+            return this.root().hasClass('mdui-disabled')
         }
-        this.root().toggleClass('edui-disabled', state);
-        if (this.root().hasClass('edui-disabled')) {
-            this.root().removeClass('edui-hover')
+        this.root().toggleClass('mdui-disabled', state);
+        if (this.root().hasClass('mdui-disabled')) {
+            this.root().removeClass('mdui-hover')
         }
         return this;
     },
     active: function (state) {
         if (state === undefined) {
-            return this.root().hasClass('edui-active')
+            return this.root().hasClass('mdui-active')
         }
-        this.root().toggleClass('edui-active', state)
+        this.root().toggleClass('mdui-active', state)
 
         return this;
     },
     mergeWith: function ($obj) {
         var me = this;
         me.data('$mergeObj', $obj);
-        $obj.edui().data('$mergeObj', me.root());
+        $obj.mdui().data('$mergeObj', me.root());
         if (!$.contains(document.body, $obj[0])) {
             $obj.appendTo(me.root());
         }
         me.on('click', function () {
             me.wrapclick(function () {
-                $obj.edui().show();
+                $obj.mdui().show();
             })
         }).register('click', me.root(), function (evt) {
             $obj.hide()
