@@ -5,9 +5,7 @@
 
     MD.defaultOptions = {
         zIndex: 10,
-        lang: 'zh-cn',
-        skin: 'cool',
-        skinPath: 'skins' + skin
+        lang: 'zh-cn'
     };
 
 })();

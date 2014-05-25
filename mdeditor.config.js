@@ -6,7 +6,7 @@
 
         MDEDITOR_HOME_URL: URL
         , toolbars: [
-            'fullscreen', 'undo', 'redo', 'bold', 'italic', 'strikethrough',
+            'fullscreen', 'undo', 'redo', 'bold', 'italic', 'strikethrough', 'image',
             'insertorderedlist', 'insertunorderedlist', 'link', 'drafts'
         ]
 
