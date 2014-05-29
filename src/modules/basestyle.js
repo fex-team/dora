@@ -1,4 +1,4 @@
-MD.registerModule("basestylemodule", function () {
+DR.registerModule("basestylemodule", function () {
     var me = this;
 
     return {

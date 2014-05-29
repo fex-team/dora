@@ -1,7 +1,7 @@
-var Editor = MD.Editor = MD.createClass('Editor', {
+var Editor = DR.Editor = DR.createClass('Editor', {
     constructor: function (options) {
-        this._options = $.extend(window.MDEDITOR_CONFIG || {}, options);
-        this.setDefaultOptions(MD.defaultOptions);
+        this._options = $.extend(window.DORA_CONFIG || {}, options);
+        this.setDefaultOptions(DR.defaultOptions);
         this._initEvents();
         this._initEditor();
         this._initShortcutKey();
@@ -30,7 +30,7 @@ var Editor = MD.Editor = MD.createClass('Editor', {
         }
     },
     lang: function (path) {
-        var lang = MD.LANG[this.option('lang')];
+        var lang = DR.LANG[this.option('lang')];
         if (!lang) {
             throw new Error("not import language file");
         }

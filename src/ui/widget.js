@@ -73,14 +73,14 @@ $.fn.mdui = function (obj) {
 function _createClass(ClassObj, properties, supperClass) {
     ClassObj.prototype = $.extend2(
         $.extend({}, properties),
-        (MD.ui[supperClass] || _widget).prototype,
+        (DR.ui[supperClass] || _widget).prototype,
         true
     );
-    ClassObj.prototype.supper = (MD.ui[supperClass] || _widget).prototype;
+    ClassObj.prototype.supper = (DR.ui[supperClass] || _widget).prototype;
     //父class的defaultOpt 合并
-    if (MD.ui[supperClass] && MD.ui[supperClass].prototype.defaultOpt) {
+    if (DR.ui[supperClass] && DR.ui[supperClass].prototype.defaultOpt) {
 
-        var parentDefaultOptions = MD.ui[supperClass].prototype.defaultOpt,
+        var parentDefaultOptions = DR.ui[supperClass].prototype.defaultOpt,
             subDefaultOptions = ClassObj.prototype.defaultOpt;
 
         ClassObj.prototype.defaultOpt = $.extend({}, parentDefaultOptions, subDefaultOptions || {});
@@ -121,9 +121,9 @@ function mergeToJQ(ClassObj, className) {
     }
 }
 
-MD.ui = {
+DR.ui = {
     define: function (className, properties, supperClass) {
-        var ClassObj = MD.ui[className] = _createClass(function (options, $el) {
+        var ClassObj = DR.ui[className] = _createClass(function (options, $el) {
             var _obj = function () {
             };
             $.extend(_obj.prototype, ClassObj.prototype, {

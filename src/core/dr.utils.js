@@ -1,4 +1,4 @@
-var Utils = MDeditor.Utils = {
+var Utils = DR.Utils = {
     argsToArray: function (args, index) {
         return Array.prototype.slice.call(args, index || 0);
     },
@@ -16,7 +16,7 @@ var Utils = MDeditor.Utils = {
      * };
      *
      * //output: key1: 1, key2: 2
-     * MD.Utils.each( demoObj, funciton ( value, key ) {
+     * DR.Utils.each( demoObj, funciton ( value, key ) {
      *
      *     console.log( key + ":" + value );
      *
@@ -34,7 +34,7 @@ var Utils = MDeditor.Utils = {
      * var divs = document.getElmentByTagNames( "div" );
      *
      * //output: 0: DIV, 1: DIV ...
-     * MD.Utils.each( divs, funciton ( value, key ) {
+     * DR.Utils.each( divs, funciton ( value, key ) {
      *
      *     console.log( key + ":" + value.tagName );
      *
@@ -68,7 +68,7 @@ var Utils = MDeditor.Utils = {
      *
      * var protoObject = { sayHello: function () { console.log('Hello UEditor!'); } };
      *
-     * var newObject = MD.Utils.makeInstance( protoObject );
+     * var newObject = DR.Utils.makeInstance( protoObject );
      * //output: Hello UEditor!
      * newObject.sayHello();
      * ```
@@ -85,7 +85,7 @@ var Utils = MDeditor.Utils = {
      * 将source对象中的属性扩展到target对象上
      * @method extend
      * @remind 该方法将强制把source对象上的属性复制到target对象上
-     * @see MD.Utils.extend(Object,Object,Boolean)
+     * @see DR.Utils.extend(Object,Object,Boolean)
      * @param { Object } target 目标对象， 新的属性将附加到该对象上
      * @param { Object } source 源对象， 该对象的属性会被附加到target对象上
      * @return { Object } 返回target对象
@@ -95,7 +95,7 @@ var Utils = MDeditor.Utils = {
      * var target = { name: 'target', sex: 1 },
      *      source = { name: 'source', age: 17 };
      *
-     * MD.Utils.extend( target, source );
+     * DR.Utils.extend( target, source );
      *
      * //output: { name: 'source', sex: 1, age: 17 }
      * console.log( target );
@@ -117,7 +117,7 @@ var Utils = MDeditor.Utils = {
      * var target = { name: 'target', sex: 1 },
      *      source = { name: 'source', age: 17 };
      *
-     * MD.Utils.extend( target, source, true );
+     * DR.Utils.extend( target, source, true );
      *
      * //output: { name: 'target', sex: 1, age: 17 }
      * console.log( target );
@@ -151,7 +151,7 @@ var Utils = MDeditor.Utils = {
      *     source1 = { name: 'source', age: 17 },
      *     source2 = { title: 'dev' };
      *
-     * MD.Utils.extend2( target, source1, source2 );
+     * DR.Utils.extend2( target, source1, source2 );
      *
      * //output: { name: 'source', age: 17, title: 'dev' }
      * console.log( target );
@@ -194,7 +194,7 @@ var Utils = MDeditor.Utils = {
      *     this.name = "小张";
      * }
      *
-     * MD.Utils.inherits(SubClass,SuperClass);
+     * DR.Utils.inherits(SubClass,SuperClass);
      *
      * var sub = new SubClass();
      * //output: '小张早上好!
@@ -242,7 +242,7 @@ var Utils = MDeditor.Utils = {
      *     console.log( this.name );
      * }
      *
-     * newTest = MD.Utils.bind( test, { name: 'object' } );
+     * newTest = DR.Utils.bind( test, { name: 'object' } );
      *
      * //output: object
      * newTest();
@@ -274,7 +274,7 @@ var Utils = MDeditor.Utils = {
      *     console.log( new Date() - start );
      * }
      *
-     * var testDefer = MD.Utils.defer( test, 1000 );
+     * var testDefer = DR.Utils.defer( test, 1000 );
      * //
      * start = new Date();
      * //output: (大约在1000毫秒之后输出) 1000
@@ -300,7 +300,7 @@ var Utils = MDeditor.Utils = {
      *     console.log(1);
      * }
      *
-     * var testDefer = MD.Utils.defer( test, 1000, true );
+     * var testDefer = DR.Utils.defer( test, 1000, true );
      *
      * //output: (两次调用仅有一次输出) 1
      * testDefer();
@@ -330,7 +330,7 @@ var Utils = MDeditor.Utils = {
      *     arr = [ 3, 4, 6, 8, 1, 1, 2 ];
      *
      * //output: 4
-     * console.log( MD.Utils.indexOf( arr, item ) );
+     * console.log( DR.Utils.indexOf( arr, item ) );
      * ```
      */
 
@@ -348,7 +348,7 @@ var Utils = MDeditor.Utils = {
      *     arr = [ 3, 4, 6, 8, 1, 2, 8, 3, 2, 1, 1, 4 ];
      *
      * //output: 9
-     * console.log( MD.Utils.indexOf( arr, item, 5 ) );
+     * console.log( DR.Utils.indexOf( arr, item, 5 ) );
      * ```
      */
     indexOf: function (array, item, start) {
@@ -373,7 +373,7 @@ var Utils = MDeditor.Utils = {
      * ```javascript
      * var arr = [ 4, 5, 7, 1, 3, 4, 6 ];
      *
-     * MD.Utils.removeItem( arr, 4 );
+     * DR.Utils.removeItem( arr, 4 );
      * //output: [ 5, 7, 1, 3, 6 ]
      * console.log( arr );
      *
@@ -402,7 +402,7 @@ var Utils = MDeditor.Utils = {
      * console.log( str.length );
      *
      * //output: 7
-     * console.log( MD.Utils.trim( " UEdtior " ).length );
+     * console.log( DR.Utils.trim( " UEdtior " ).length );
      *
      * //output: 9
      * console.log( str.length );
@@ -423,7 +423,7 @@ var Utils = MDeditor.Utils = {
      * ```javascript
      *
      * //output: Object {UEdtior: 1, UEDTIOR: 1, Hello: 1, HELLO: 1}
-     * console.log( MD.Utils.listToMap( 'UEdtior,Hello' ) );
+     * console.log( DR.Utils.listToMap( 'UEdtior,Hello' ) );
      *
      * ```
      */
@@ -438,7 +438,7 @@ var Utils = MDeditor.Utils = {
      * ```javascript
      *
      * //output: Object {UEdtior: 1, UEDTIOR: 1, Hello: 1, HELLO: 1}
-     * console.log( MD.Utils.listToMap( [ 'UEdtior', 'Hello' ] ) );
+     * console.log( DR.Utils.listToMap( [ 'UEdtior', 'Hello' ] ) );
      *
      * ```
      */
@@ -461,7 +461,7 @@ var Utils = MDeditor.Utils = {
      * var html = '<body>&</body>';
      *
      * //output: &lt;body&gt;&amp;&lt;/body&gt;
-     * console.log( MD.Utils.unhtml( html ) );
+     * console.log( DR.Utils.unhtml( html ) );
      *
      * ```
      */
@@ -484,7 +484,7 @@ var Utils = MDeditor.Utils = {
 
     /**
      * 将str中的转义字符还原成html字符
-     * @see MD.Utils.unhtml(String);
+     * @see DR.Utils.unhtml(String);
      * @method html
      * @param { String } str 需要逆转义的字符串
      * @return { String } 逆转义后的字符串
@@ -494,7 +494,7 @@ var Utils = MDeditor.Utils = {
      * var str = '&lt;body&gt;&amp;&lt;/body&gt;';
      *
      * //output: <body>&</body>
-     * console.log( MD.Utils.html( str ) );
+     * console.log( DR.Utils.html( str ) );
      *
      * ```
      */
@@ -522,7 +522,7 @@ var Utils = MDeditor.Utils = {
      * var str = 'border-top';
      *
      * //output: borderTop
-     * console.log( MD.Utils.cssStyleToDomStyle( str ) );
+     * console.log( DR.Utils.cssStyleToDomStyle( str ) );
      *
      * ```
      */
@@ -547,7 +547,7 @@ var Utils = MDeditor.Utils = {
      * @example
      * ```javascript
      *
-     * MD.Utils.loadFile( document, {
+     * DR.Utils.loadFile( document, {
      *     src:"test.js",
      *     tag:"script",
      *     type:"text/javascript",
@@ -568,7 +568,7 @@ var Utils = MDeditor.Utils = {
      * @example
      * ```javascript
      *
-     * MD.Utils.loadFile( document, {
+     * DR.Utils.loadFile( document, {
      *     src:"test.js",
      *     tag:"script",
      *     type:"text/javascript",
@@ -657,22 +657,22 @@ var Utils = MDeditor.Utils = {
      * ```javascript
      *
      * //output: true
-     * console.log( MD.Utils.isEmptyObject( {} ) );
+     * console.log( DR.Utils.isEmptyObject( {} ) );
      *
      * //output: true
-     * console.log( MD.Utils.isEmptyObject( [] ) );
+     * console.log( DR.Utils.isEmptyObject( [] ) );
      *
      * //output: true
-     * console.log( MD.Utils.isEmptyObject( "" ) );
+     * console.log( DR.Utils.isEmptyObject( "" ) );
      *
      * //output: false
-     * console.log( MD.Utils.isEmptyObject( { key: 1 } ) );
+     * console.log( DR.Utils.isEmptyObject( { key: 1 } ) );
      *
      * //output: false
-     * console.log( MD.Utils.isEmptyObject( [1] ) );
+     * console.log( DR.Utils.isEmptyObject( [1] ) );
      *
      * //output: false
-     * console.log( MD.Utils.isEmptyObject( "1" ) );
+     * console.log( DR.Utils.isEmptyObject( "1" ) );
      *
      * ```
      */
@@ -765,10 +765,10 @@ var Utils = MDeditor.Utils = {
      * ```javascript
      *
      * //output: 500px
-     * console.log( MD.Utils.transUnitToPx( '20cm' ) );
+     * console.log( DR.Utils.transUnitToPx( '20cm' ) );
      *
      * //output: 27px
-     * console.log( MD.Utils.transUnitToPx( '20pt' ) );
+     * console.log( DR.Utils.transUnitToPx( '20pt' ) );
      *
      * ```
      */
@@ -799,7 +799,7 @@ var Utils = MDeditor.Utils = {
      * @example
      * ```javascript
      *
-     * MD.Utils.domReady( function () {
+     * DR.Utils.domReady( function () {
      *
      *     console.log('123');
      *
@@ -858,11 +858,11 @@ var Utils = MDeditor.Utils = {
      * 动态添加css样式
      * @method cssRule
      * @param { String } 节点名称
-     * @grammar MD.Utils.cssRule('添加的样式的节点名称',['样式'，'放到哪个document上'])
-     * @grammar MD.Utils.cssRule('body','body{background:#ccc}') => null  //给body添加背景颜色
-     * @grammar MD.Utils.cssRule('body') =>样式的字符串  //取得key值为body的样式的内容,如果没有找到key值先关的样式将返回空，例如刚才那个背景颜色，将返回 body{background:#ccc}
-     * @grammar MD.Utils.cssRule('body',document) => 返回指定key的样式，并且指定是哪个document
-     * @grammar MD.Utils.cssRule('body','') =>null //清空给定的key值的背景颜色
+     * @grammar DR.Utils.cssRule('添加的样式的节点名称',['样式'，'放到哪个document上'])
+     * @grammar DR.Utils.cssRule('body','body{background:#ccc}') => null  //给body添加背景颜色
+     * @grammar DR.Utils.cssRule('body') =>样式的字符串  //取得key值为body的样式的内容,如果没有找到key值先关的样式将返回空，例如刚才那个背景颜色，将返回 body{background:#ccc}
+     * @grammar DR.Utils.cssRule('body',document) => 返回指定key的样式，并且指定是哪个document
+     * @grammar DR.Utils.cssRule('body','') =>null //清空给定的key值的背景颜色
      */
     cssRule: browser.ie && browser.version != 11 ? function (key, style, doc) {
         var indexList, index;

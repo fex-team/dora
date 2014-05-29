@@ -1,7 +1,7 @@
-var RichEditor = MD.createClass("RichEditor", {
+var RichEditor = DR.createClass("RichEditor", {
     constructor: function (editor) {
         this.editor = editor;
     }
 });
 
-MD.extendClass(RichEditor, BaseEditor);
+DR.extendClass(RichEditor, BaseEditor);

@@ -1,7 +1,7 @@
-var CodeEditor = MD.createClass("CodeEditor", {
+var CodeEditor = DR.createClass("CodeEditor", {
     constructor: function (editor) {
         this.editor = editor;
     }
 });
 
-MD.extendClass(CodeEditor, BaseEditor);
+DR.extendClass(CodeEditor, BaseEditor);

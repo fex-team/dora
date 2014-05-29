@@ -1,4 +1,4 @@
-var EventBase = MD.createClass("EventBase", {
+var EventBase = DR.createClass("EventBase", {
     _listen: function (type, callback) {
         if (!this._eventCallbacks) {
             this._eventCallbacks = {};

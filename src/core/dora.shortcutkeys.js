@@ -1,4 +1,4 @@
-MD.extendClass(Editor, {
+DR.extendClass(Editor, {
     _initShortcutKey: function () {
         this._shortcutkeys = {};
     },

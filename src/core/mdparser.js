@@ -1,4 +1,4 @@
-var MdParser = MD.MdParser = MD.createClass("MdParser", {
+var MdParser = DR.MdParser = DR.createClass("MdParser", {
     constructor: function (editor) {
         this.editor = editor;
         this._parserPool = {};

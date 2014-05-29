@@ -1,6 +1,6 @@
 //toolbar 类
 (function () {
-    MD.ui.define('toolbar', {
+    DR.ui.define('toolbar', {
         tpl: '<div class="mdui-toolbar"  ><div class="mdui-btn-toolbar" unselectable="on" onmousedown="return false"  ></div></div>',
         init: function () {
             var $root = this.root($(this.tpl));

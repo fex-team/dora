@@ -48,7 +48,7 @@ var attrFix = ie && browser.version < 9 ? {
         'table-row' , 'table-column-group' , 'table-column' ,
         'table-cell' , 'table-caption'
     ]);
-var domUtils = MD.dom.domUtils = {
+var domUtils = DR.dom.domUtils = {
     //节点常量
     NODE_ELEMENT: 1,
     NODE_DOCUMENT: 9,

@@ -1,4 +1,4 @@
-var BaseEditor = MD.createClass("BaseEditor", {
+var BaseEditor = DR.createClass("BaseEditor", {
     init: function (editor) {
         var me = this;
         me.editor = editor;
@@ -15,10 +15,10 @@ var BaseEditor = MD.createClass("BaseEditor", {
         var iframe = me.$iframe.get(0);
         me.document = iframe.contentDocument || iframe.contentWindow.document;
         me.$body = $(me.document.body);
-        me.selection = new MD.dom.Selection(me.document, me.document.body);
+        me.selection = new DR.dom.Selection(me.document, me.document.body);
 
         me.$body.attr('contenteditable', true);
     }
 });
 
-MD.extendClass(BaseEditor, EventBase);
+DR.extendClass(BaseEditor, EventBase);

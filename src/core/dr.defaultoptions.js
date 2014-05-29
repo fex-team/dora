@@ -3,7 +3,7 @@
 
     var skin = 'cool';
 
-    MD.defaultOptions = {
+    DR.defaultOptions = {
         zIndex: 10,
         lang: 'zh-cn'
     };

@@ -1,5 +1,5 @@
 //button 类
-MD.ui.define('button', {
+DR.ui.define('button', {
     tpl: '<<%if(!texttype){%>div class="mdui-btn mdui-btn-<%=icon%> <%if(name){%>mdui-btn-name-<%=name%><%}%>" unselectable="on" onmousedown="return false" <%}else{%>a class="mdui-text-btn"<%}%><% if(title) {%> data-original-title="<%=title%>" <%};%>> ' +
     '<% if(icon) {%><div unselectable="on" class="mdui-icon-<%=icon%> mdui-icon"></div><% }; %><%if(text) {%><span unselectable="on" onmousedown="return false" class="mdui-button-label"><%=text%></span><%}%>' +
     '<%if(caret && text){%><span class="mdui-button-spacing"></span><%}%>' +

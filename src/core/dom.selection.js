@@ -113,7 +113,7 @@
         return null;
     }
 
-    var Selection = MD.dom.Selection = function (doc, body) {
+    var Selection = DR.dom.Selection = function (doc, body) {
         var me = this;
         me.document = doc;
         me.body = body;
@@ -151,7 +151,7 @@
          * 获取原生seleciton对象
          * @public
          * @function
-         * @name    MD.dom.Selection.getNative
+         * @name    DR.dom.Selection.getNative
          * @return {Selection}    获得selection对象
          */
         getNative: function (txtRange) {
@@ -166,7 +166,7 @@
          * 获得ieRange
          * @public
          * @function
-         * @name    MD.dom.Selection.getIERange
+         * @name    DR.dom.Selection.getIERange
          * @return {ieRange}    返回ie原生的Range
          */
         getIERange: function (txtRange) {
@@ -187,7 +187,7 @@
          * 缓存当前选区的range和选区的开始节点
          * @public
          * @function
-         * @name    MD.dom.Selection.cache
+         * @name    DR.dom.Selection.cache
          */
         cache: function () {
             this.clear();
@@ -210,7 +210,7 @@
          * 清空缓存
          * @public
          * @function
-         * @name    MD.dom.Selection.clear
+         * @name    DR.dom.Selection.clear
          */
         clear: function () {
             this._cachedStartElementPath = this._cachedRange = this._cachedStartElement = null;
@@ -226,8 +226,8 @@
          * 获取选区对应的Range
          * @public
          * @function
-         * @name    MD.dom.Selection.getRange
-         * @returns {MD.dom.Range}    得到Range对象
+         * @name    DR.dom.Selection.getRange
+         * @returns {DR.dom.Range}    得到Range对象
          */
         getRange: function () {
             var me = this;
@@ -289,7 +289,7 @@
          * 获取开始元素，用于状态反射
          * @public
          * @function
-         * @name    MD.dom.Selection.getStart
+         * @name    DR.dom.Selection.getStart
          * @return {Element}     获得开始元素
          */
         getStart: function () {
@@ -335,7 +335,7 @@
          * 得到选区中的文本
          * @public
          * @function
-         * @name    MD.dom.Selection.getText
+         * @name    DR.dom.Selection.getText
          * @return  {String}    选区中包含的文本
          */
         getText: function () {

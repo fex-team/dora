@@ -1,4 +1,4 @@
-MD.extendClass(Editor, {
+DR.extendClass(Editor, {
     _initEvents: function () {
         this._eventCallbacks = {};
     },
@@ -23,4 +23,4 @@ MD.extendClass(Editor, {
     }
 });
 
-MD.extendClass(Editor, EventBase);
+DR.extendClass(Editor, EventBase);

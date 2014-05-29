@@ -1,7 +1,7 @@
-MD.extendClass(Editor, {
+DR.extendClass(Editor, {
     _initModules: function () {
 
-        var modulesPool = MD.getModules();
+        var modulesPool = DR.getModules();
 
         this._commands = {};
         this._query = {};

@@ -24,7 +24,7 @@
     if (debug) {
         var origin = Object.prototype.toString;
         Object.prototype.toString = function () {
-            return this.__MDeditorClassName || origin.call(this);
+            return this.__DoraClassName || origin.call(this);
         };
     }
 
@@ -32,7 +32,7 @@
     function Class() {
     }
 
-    Class.__MDeditorClassName = 'Class';
+    Class.__DoraClassName = 'Class';
 
     function getCallerClass(instance, caller) {
         var currentClass = instance.constructor;
@@ -41,20 +41,20 @@
     // 提供 base 调用支持
     Class.prototype.base = function (name) {
         var caller = arguments.callee.caller;
-        var method = caller.__MDeditorMethodClass.__MDeditorBaseClass.prototype[ name ];
+        var method = caller.__DoraMethodClass.__DoraBaseClass.prototype[ name ];
         return method.apply(this, Array.prototype.slice.call(arguments, 1));
     };
 
     // 直接调用 base 类的同名方法
     Class.prototype.callBase = function () {
         var caller = arguments.callee.caller;
-        var method = caller.__MDeditorMethodClass.__MDeditorBaseClass.prototype[ caller.__MDeditorMethodName ];
+        var method = caller.__DoraMethodClass.__DoraBaseClass.prototype[ caller.__DoraMethodName ];
         return method.apply(this, arguments);
     };
 
     Class.prototype.mixin = function (name) {
         var caller = arguments.callee.caller;
-        var mixins = caller.__MDeditorMethodClass.__MDeditorMixins;
+        var mixins = caller.__DoraMethodClass.__DoraMixins;
         if (!mixins) {
             return this;
         }
@@ -64,8 +64,8 @@
 
     Class.prototype.callMixin = function () {
         var caller = arguments.callee.caller;
-        var methodName = caller.__MDeditorMethodName;
-        var mixins = caller.__MDeditorMethodClass.__MDeditorMixins;
+        var methodName = caller.__DoraMethodName;
+        var mixins = caller.__DoraMethodClass.__DoraMixins;
         if (!mixins) {
             return this;
         }
@@ -88,7 +88,7 @@
     };
 
     Class.prototype.getType = function () {
-        return this.__MDeditorClassName;
+        return this.__DoraClassName;
     };
 
     // 检查基类是否调用了父类的构造函数
@@ -107,28 +107,28 @@
         }
     }
 
-    var MDEDITOR_INHERIT_FLAG = '__MDEDITOR_INHERIT_FLAG_' + ( +new Date() );
+    var DORA_INHERIT_FLAG = '__DORA_INHERIT_FLAG_' + ( +new Date() );
 
     function inherit(constructor, BaseClass, classname) {
-        var MDeditorClass = eval('(function ' + classname + '( __inherit__flag ) {' +
-        'if( __inherit__flag != MDEDITOR_INHERIT_FLAG ) {' +
-        'MDeditorClass.__MDeditorConstructor.apply(this, arguments);' +
+        var DoraClass = eval('(function ' + classname + '( __inherit__flag ) {' +
+        'if( __inherit__flag != DORA_INHERIT_FLAG ) {' +
+        'DoraClass.__DoraConstructor.apply(this, arguments);' +
         '}' +
-        'this.__MDeditorClassName = MDeditorClass.__MDeditorClassName;' +
+        'this.__DoraClassName = DoraClass.__DoraClassName;' +
         '})');
-        MDeditorClass.__MDeditorConstructor = constructor;
+        DoraClass.__DoraConstructor = constructor;
 
-        MDeditorClass.prototype = new BaseClass(MDEDITOR_INHERIT_FLAG);
+        DoraClass.prototype = new BaseClass(DORA_INHERIT_FLAG);
 
         for (var methodName in BaseClass.prototype) {
-            if (BaseClass.prototype.hasOwnProperty(methodName) && methodName.indexOf('__MDeditor') !== 0) {
-                MDeditorClass.prototype[ methodName ] = BaseClass.prototype[ methodName ];
+            if (BaseClass.prototype.hasOwnProperty(methodName) && methodName.indexOf('__Dora') !== 0) {
+                DoraClass.prototype[ methodName ] = BaseClass.prototype[ methodName ];
             }
         }
 
-        MDeditorClass.prototype.constructor = MDeditorClass;
+        DoraClass.prototype.constructor = DoraClass;
 
-        return MDeditorClass;
+        return DoraClass;
     }
 
     function mixin(NewClass, mixins) {
@@ -139,7 +139,7 @@
         var i, length = mixins.length,
             proto, method;
 
-        NewClass.__MDeditorMixins = {
+        NewClass.__DoraMixins = {
             constructor: []
         };
 
@@ -147,14 +147,14 @@
             proto = mixins[ i ].prototype;
 
             for (method in proto) {
-                if (false === proto.hasOwnProperty(method) || method.indexOf('__MDeditor') === 0) {
+                if (false === proto.hasOwnProperty(method) || method.indexOf('__Dora') === 0) {
                     continue;
                 }
                 if (method === 'constructor') {
                     // constructor 特殊处理
-                    NewClass.__MDeditorMixins.constructor.push(proto[ method ]);
+                    NewClass.__DoraMixins.constructor.push(proto[ method ]);
                 } else {
-                    NewClass.prototype[ method ] = NewClass.__MDeditorMixins[ method ] = proto[ method ];
+                    NewClass.prototype[ method ] = NewClass.__DoraMixins[ method ] = proto[ method ];
                 }
             }
         }
@@ -163,22 +163,22 @@
     }
 
     function extend(BaseClass, extension) {
-        if (extension.__MDeditorClassName) {
+        if (extension.__DoraClassName) {
             extension = extension.prototype;
         }
         for (var methodName in extension) {
             if (extension.hasOwnProperty(methodName) &&
-                methodName.indexOf('__MDeditor') &&
+                methodName.indexOf('__Dora') &&
                 methodName != 'constructor') {
                 var method = BaseClass.prototype[ methodName ] = extension[ methodName ];
-                method.__MDeditorMethodClass = BaseClass;
-                method.__MDeditorMethodName = methodName;
+                method.__DoraMethodClass = BaseClass;
+                method.__DoraMethodName = methodName;
             }
         }
         return BaseClass;
     }
 
-    MD.createClass = function (classname, defines) {
+    DR.createClass = function (classname, defines) {
         var constructor, NewClass, BaseClass;
 
         if (arguments.length === 1) {
@@ -203,11 +203,11 @@
         NewClass = inherit(constructor, BaseClass, classname);
         NewClass = mixin(NewClass, defines.mixins);
 
-        NewClass.__MDeditorClassName = constructor.__MDeditorClassName = classname;
-        NewClass.__MDeditorBaseClass = constructor.__MDeditorBaseClass = BaseClass;
+        NewClass.__DoraClassName = constructor.__DoraClassName = classname;
+        NewClass.__DoraBaseClass = constructor.__DoraBaseClass = BaseClass;
 
-        NewClass.__MDeditorMethodName = constructor.__MDeditorMethodName = 'constructor';
-        NewClass.__MDeditorMethodClass = constructor.__MDeditorMethodClass = NewClass;
+        NewClass.__DoraMethodName = constructor.__DoraMethodName = 'constructor';
+        NewClass.__DoraMethodClass = constructor.__DoraMethodClass = NewClass;
 
         // 下面这些不需要拷贝到原型链上
         delete defines.mixins;
@@ -219,6 +219,6 @@
         return NewClass;
     };
 
-    MD.extendClass = extend;
+    DR.extendClass = extend;
 
 })();

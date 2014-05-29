@@ -1,7 +1,7 @@
 /**
  * Range封装
  * @file
- * @module MD.dom
+ * @module DR.dom
  * @class Range
  * @since 1.2.6.1
  */
@@ -9,13 +9,13 @@
 /**
  * dom操作封装
  * @unfile
- * @module MD.dom
+ * @module DR.dom
  */
 
 /**
  * Range实现类，本类是MDditor底层核心类，封装不同浏览器之间的Range操作。
  * @unfile
- * @module MD.dom
+ * @module DR.dom
  * @class Range
  */
 
@@ -195,7 +195,7 @@
      * @property { Document } document 当前Range所属的Document对象
      * @remind 不同range的的document属性可以是不同的
      */
-    var Range = MD.dom.Range = function (document) {
+    var Range = DR.dom.Range = function (document) {
         var me = this;
         me.startContainer =
             me.startOffset =
@@ -280,7 +280,7 @@
          * 删除当前选区范围中的所有内容
          * @method deleteContents
          * @remind 执行完该操作后， 当前Range对象变成了闭合状态
-         * @return { MD.dom.Range } 当前操作的Range对象
+         * @return { DR.dom.Range } 当前操作的Range对象
          * @example
          * ```html
          * <body>
@@ -381,7 +381,7 @@
          *          中的索引
          * @param { Node } node 将被设为当前选区开始边界容器的节点对象
          * @param { int } offset 选区的开始位置偏移量
-         * @return { MD.dom.Range } 当前range对象
+         * @return { DR.dom.Range } 当前range对象
          * @example
          * ```html
          * <!-- 选区 -->
@@ -422,8 +422,8 @@
          * @method  setEnd
          * @param { Node } node 作为当前选区结束边界容器的节点对象
          * @param { int } offset 结束边界的偏移量
-         * @see MD.dom.Range:setStart(Node,int)
-         * @return { MD.dom.Range } 当前range对象
+         * @see DR.dom.Range:setStart(Node,int)
+         * @return { DR.dom.Range } 当前range对象
          */
         setEnd: function (node, offset) {
             return setEndPoint(false, node, offset, this);
@@ -434,7 +434,7 @@
          * @method  setStartAfter
          * @remind 该操作将会把给定节点的父节点作为range的开始容器， 且偏移量是该节点在其父节点中的位置索引+1
          * @param { Node } node 选区的开始边界将紧接着该节点之后
-         * @return { MD.dom.Range } 当前range对象
+         * @return { DR.dom.Range } 当前range对象
          * @example
          * ```html
          * <!-- 选区示例 -->
@@ -460,8 +460,8 @@
          * @method  setStartBefore
          * @remind 该操作将会把给定节点的父节点作为range的开始容器， 且偏移量是该节点在其父节点中的位置索引
          * @param { Node } node 新的选区开始位置在该节点之前
-         * @see MD.dom.Range:setStartAfter(Node)
-         * @return { MD.dom.Range } 当前range对象
+         * @see DR.dom.Range:setStartAfter(Node)
+         * @return { DR.dom.Range } 当前range对象
          */
         setStartBefore: function (node) {
             return this.setStart(node.parentNode, domUtils.getNodeIndex(node));
@@ -472,8 +472,8 @@
          * @method  setEndAfter
          * @remind 该操作将会把给定节点的父节点作为range的结束容器， 且偏移量是该节点在其父节点中的位置索引+1
          * @param { Node } node 目标节点
-         * @see MD.dom.Range:setStartAfter(Node)
-         * @return { MD.dom.Range } 当前range对象
+         * @see DR.dom.Range:setStartAfter(Node)
+         * @return { DR.dom.Range } 当前range对象
          * @example
          * ```html
          * <!-- 选区示例 -->
@@ -499,8 +499,8 @@
          * @method  setEndBefore
          * @remind 该操作将会把给定节点的父节点作为range的结束容器， 且偏移量是该节点在其父节点中的位置索引
          * @param { Node } node 目标节点
-         * @see MD.dom.Range:setEndAfter(Node)
-         * @return { MD.dom.Range } 当前range对象
+         * @see DR.dom.Range:setEndAfter(Node)
+         * @return { DR.dom.Range } 当前range对象
          */
         setEndBefore: function (node) {
             return this.setEnd(node.parentNode, domUtils.getNodeIndex(node));
@@ -512,8 +512,8 @@
          * @remind 选区的开始容器将变成给定的节点， 且偏移量为0
          * @remind 如果给定的节点是元素节点， 则该节点必须是允许包含子节点的元素。
          * @param { Node } node 目标节点
-         * @see MD.dom.Range:setStartBefore(Node)
-         * @return { MD.dom.Range } 当前range对象
+         * @see DR.dom.Range:setStartBefore(Node)
+         * @return { DR.dom.Range } 当前range对象
          * @example
          * ```html
          * <!-- 选区示例 -->
@@ -540,8 +540,8 @@
          * @remind 选区的开始容器将变成给定的节点， 且偏移量为该节点的子节点数
          * @remind 如果给定的节点是元素节点， 则该节点必须是允许包含子节点的元素。
          * @param { Node } node 目标节点
-         * @see MD.dom.Range:setStartAtFirst(Node)
-         * @return { MD.dom.Range } 当前range对象
+         * @see DR.dom.Range:setStartAtFirst(Node)
+         * @return { DR.dom.Range } 当前range对象
          */
         setStartAtLast: function (node) {
             return this.setStart(node, node.nodeType == 3 ? node.nodeValue.length : node.childNodes.length);
@@ -553,8 +553,8 @@
          * @param { Node } node 目标节点
          * @remind 选区的结束容器将变成给定的节点， 且偏移量为0
          * @remind node必须是一个元素节点， 且必须是允许包含子节点的元素。
-         * @see MD.dom.Range:setStartAtFirst(Node)
-         * @return { MD.dom.Range } 当前range对象
+         * @see DR.dom.Range:setStartAtFirst(Node)
+         * @return { DR.dom.Range } 当前range对象
          */
         setEndAtFirst: function (node) {
             return this.setEnd(node, 0);
@@ -566,8 +566,8 @@
          * @param { Node } node 目标节点
          * @remind 选区的结束容器将变成给定的节点， 且偏移量为该节点的子节点数量
          * @remind node必须是一个元素节点， 且必须是允许包含子节点的元素。
-         * @see MD.dom.Range:setStartAtFirst(Node)
-         * @return { MD.dom.Range } 当前range对象
+         * @see DR.dom.Range:setStartAtFirst(Node)
+         * @return { DR.dom.Range } 当前range对象
          */
         setEndAtLast: function (node) {
             return this.setEnd(node, node.nodeType == 3 ? node.nodeValue.length : node.childNodes.length);
@@ -579,7 +579,7 @@
          * @remind 此时， 选区的开始容器和结束容器都是该节点的父节点， 其startOffset是该节点在父节点中的位置索引，
          *          而endOffset为startOffset+1
          * @param { Node } node 需要选中的节点
-         * @return { MD.dom.Range } 当前range对象，此时的range仅包含当前给定的节点对象
+         * @return { DR.dom.Range } 当前range对象，此时的range仅包含当前给定的节点对象
          * @example
          * ```html
          * <!-- 选区示例 -->
@@ -606,7 +606,7 @@
          * @remind 此时， 选区的开始容器和结束容器都是该节点， 其startOffset为0，
          *          而endOffset是该节点的子节点数。
          * @param { Node } node 目标节点， 当前range将包含该节点内的所有节点
-         * @return { MD.dom.Range } 当前range对象， 此时range仅包含给定节点的所有子节点
+         * @return { DR.dom.Range } 当前range对象， 此时range仅包含给定节点的所有子节点
          * @example
          * ```html
          * <!-- 选区示例 -->
@@ -631,7 +631,7 @@
          * clone当前Range对象
          * @method  cloneRange
          * @remind 返回的range是一个全新的range对象， 其内部所有属性与当前被clone的range相同。
-         * @return { MD.dom.Range } 当前range对象的一个副本
+         * @return { DR.dom.Range } 当前range对象的一个副本
          */
         cloneRange: function () {
             var me = this;
@@ -642,7 +642,7 @@
         /**
          * 向当前选区的结束处闭合选区
          * @method  collapse
-         * @return { MD.dom.Range } 当前range对象
+         * @return { DR.dom.Range } 当前range对象
          * @example
          * ```html
          * <!-- 选区示例 -->
@@ -666,8 +666,8 @@
          * 如果toStart的值为true，则向开始位置闭合， 反之，向结束位置闭合。
          * @method  collapse
          * @param { Boolean } toStart 是否向选区开始处闭合
-         * @return { MD.dom.Range } 当前range对象，此时range对象处于闭合状态
-         * @see MD.dom.Range:collapse()
+         * @return { DR.dom.Range } 当前range对象，此时range对象处于闭合状态
+         * @see DR.dom.Range:collapse()
          * @example
          * ```html
          * <!-- 选区示例 -->
@@ -701,7 +701,7 @@
         /**
          * 调整range的开始位置和结束位置，使其"收缩"到最小的位置
          * @method  shrinkBoundary
-         * @return { MD.dom.Range } 当前range对象
+         * @return { DR.dom.Range } 当前range对象
          * @example
          * ```html
          * <span>xx<b>xx[</b>xxxxx]</span> => <span>xx<b>xx</b>[xxxxx]</span>
@@ -733,8 +733,8 @@
          * 如果ignoreEnd的值为true，则忽略对结束位置的调整
          * @method  shrinkBoundary
          * @param { Boolean } ignoreEnd 是否忽略对结束位置的调整
-         * @return { MD.dom.Range } 当前range对象
-         * @see MD.dom.domUtils.Range:shrinkBoundary()
+         * @return { DR.dom.Range } 当前range对象
+         * @see DR.dom.domUtils.Range:shrinkBoundary()
          */
         shrinkBoundary: function (ignoreEnd) {
             var me = this, child,
@@ -791,7 +791,7 @@
          * @method  getCommonAncestor
          * @param { Boolean } includeSelf 是否允许获取到的公共祖先节点是当前range对象的容器节点
          * @return { Node } 当前range对象内所有节点的公共祖先节点
-         * @see MD.dom.Range:getCommonAncestor()
+         * @see DR.dom.Range:getCommonAncestor()
          * @example
          * ```html
          * <body>
@@ -822,8 +822,8 @@
          * @param { Boolean } includeSelf 是否允许获取到的公共祖先节点是当前range对象的容器节点
          * @param { Boolean } ignoreTextNode 获取祖先节点的过程中是否忽略类型为文本节点的祖先节点
          * @return { Node } 当前range对象内所有节点的公共祖先节点
-         * @see MD.dom.Range:getCommonAncestor()
-         * @see MD.dom.Range:getCommonAncestor(Boolean)
+         * @see DR.dom.Range:getCommonAncestor()
+         * @see DR.dom.Range:getCommonAncestor(Boolean)
          * @example
          * ```html
          * <body>
@@ -863,7 +863,7 @@
          * 调整当前Range的开始和结束边界容器，如果是容器节点是文本节点,就调整到包含该文本节点的父节点上
          * @method trimBoundary
          * @remind 该操作有可能会引起文本节点被切开
-         * @return { MD.dom.Range } 当前range对象
+         * @return { DR.dom.Range } 当前range对象
          * @example
          * ```html
          *
@@ -886,7 +886,7 @@
          * 可以根据 ignoreEnd 参数的值决定是否调整对结束边界的调整
          * @method trimBoundary
          * @param { Boolean } ignoreEnd 是否忽略对结束边界的调整
-         * @return { MD.dom.Range } 当前range对象
+         * @return { DR.dom.Range } 当前range对象
          * @example
          * ```html
          *
@@ -950,7 +950,7 @@
          * 如果选区在文本的边界上，就扩展选区到文本的父节点上, 如果当前选区是闭合的， 则什么也不做
          * @method txtToElmBoundary
          * @remind 该操作不会修改dom节点
-         * @return { MD.dom.Range } 当前range对象
+         * @return { DR.dom.Range } 当前range对象
          */
 
         /**
@@ -959,7 +959,7 @@
          * @method txtToElmBoundary
          * @param { Boolean } ignoreCollapsed 是否忽略选区的闭合状态， 如果该参数取值为true， 则
          *                      不论选区是否闭合， 都会执行该操作， 反之， 则不会对闭合的选区执行该操作
-         * @return { MD.dom.Range } 当前range对象
+         * @return { DR.dom.Range } 当前range对象
          */
         txtToElmBoundary: function (ignoreCollapsed) {
             function adjust(r, c) {
@@ -990,7 +990,7 @@
          * @method  insertNode
          * @param { Node } node 需要插入的节点
          * @remind 插入的节点可以是一个DocumentFragment依次插入多个节点
-         * @return { MD.dom.Range } 当前range对象
+         * @return { DR.dom.Range } 当前range对象
          */
         insertNode: function (node) {
             var first = node, length = 1;
@@ -1016,8 +1016,8 @@
         /**
          * 闭合选区到当前选区的开始位置， 并且定位光标到闭合后的位置
          * @method  setCursor
-         * @return { MD.dom.Range } 当前range对象
-         * @see MD.dom.Range:collapse()
+         * @return { DR.dom.Range } 当前range对象
+         * @see DR.dom.Range:collapse()
          */
 
         /**
@@ -1025,8 +1025,8 @@
          * @method  setCursor
          * @param { Boolean } toEnd 是否向后闭合， 如果为true， 则闭合选区时， 将向结束容器方向闭合，
          *                      反之，则向开始容器方向闭合
-         * @return { MD.dom.Range } 当前range对象
-         * @see MD.dom.Range:collapse(Boolean)
+         * @return { DR.dom.Range } 当前range对象
+         * @see DR.dom.Range:collapse(Boolean)
          */
         setCursor: function (toEnd, noFillData) {
             return this.collapse(!toEnd).select(noFillData);
@@ -1068,8 +1068,8 @@
          *  调整当前range的边界到书签位置，并删除该书签对象所标记的位置内的节点
          *  @method  moveToBookmark
          *  @param { BookMark } bookmark createBookmark所创建的标签对象
-         *  @return { MD.dom.Range } 当前range对象
-         *  @see MD.dom.Range:createBookmark(Boolean)
+         *  @return { DR.dom.Range } 当前range对象
+         *  @see DR.dom.Range:createBookmark(Boolean)
          */
         moveToBookmark: function (bookmark) {
             var start = bookmark.id ? this.document.getElementById(bookmark.start) : bookmark.start,
@@ -1089,7 +1089,7 @@
          * 调整range的边界，使其"放大"到最近的父节点
          * @method  enlarge
          * @remind 会引起选区的变化
-         * @return { MD.dom.Range } 当前range对象
+         * @return { DR.dom.Range } 当前range对象
          */
 
         /**
@@ -1097,7 +1097,7 @@
          * 要求扩大之后的父节点是block节点
          * @method  enlarge
          * @param { Boolean } toBlock 是否要求扩大之后的父节点必须是block节点
-         * @return { MD.dom.Range } 当前range对象
+         * @return { DR.dom.Range } 当前range对象
          */
         enlarge: function (toBlock, stopFn) {
             var isBody = domUtils.isBody,
@@ -1192,8 +1192,8 @@
         /**
          * 调整Range的边界，使其"缩小"到最合适的位置
          * @method adjustmentBoundary
-         * @return { MD.dom.Range } 当前range对象
-         * @see MD.dom.Range:shrinkBoundary()
+         * @return { DR.dom.Range } 当前range对象
+         * @see DR.dom.Range:shrinkBoundary()
          */
         adjustmentBoundary: function () {
             if (!this.collapsed) {
@@ -1228,7 +1228,7 @@
          * @method applyInlineStyle
          * @param { String } tagName 需要添加的标签名
          * @param { Object } attrs 跟随新添加的标签的属性
-         * @return { MD.dom.Range } 当前选区
+         * @return { DR.dom.Range } 当前选区
          * @example
          * ```html
          * <p>xxxx[xxxx]x</p>
@@ -1313,7 +1313,7 @@
          * 移除当前选区内指定的inline标签，但保留其中的内容
          * @method removeInlineStyle
          * @param { String } tagName 需要移除的标签名
-         * @return { MD.dom.Range } 当前的range对象
+         * @return { DR.dom.Range } 当前的range对象
          * @example
          * ```html
          * xx[x<span>xxx<em>yyy</em>zz]z</span>  => range.removeInlineStyle(["em"])  => xx[x<span>xxxyyyzz]z</span>
@@ -1324,8 +1324,8 @@
          * 移除当前选区内指定的一组inline标签，但保留其中的内容
          * @method removeInlineStyle
          * @param { Array } tagNameArr 需要移除的标签名的数组
-         * @return { MD.dom.Range } 当前的range对象
-         * @see MD.dom.Range:removeInlineStyle(String)
+         * @return { DR.dom.Range } 当前的range对象
+         * @see DR.dom.Range:removeInlineStyle(String)
          */
         removeInlineStyle: function (tagNames) {
             if (this.collapsed)return this;
@@ -1410,7 +1410,7 @@
         /**
          * 在页面上高亮range所表示的选区
          * @method select
-         * @return { MD.dom.Range } 返回当前Range对象
+         * @return { DR.dom.Range } 返回当前Range对象
          */
         //这里不区分ie9以上，trace:3824
         select: browser.ie ? function (noFillData, textRange) {
@@ -1555,7 +1555,7 @@
          * 滚动到当前range开始的位置
          * @method scrollToView
          * @param { Window } win 当前range对象所属的window对象
-         * @return { MD.dom.Range } 当前Range对象
+         * @return { DR.dom.Range } 当前Range对象
          */
 
         /**
@@ -1563,7 +1563,7 @@
          * @method scrollToView
          * @param { Window } win 当前range对象所属的window对象
          * @param { Number } offset 距离range开始位置处的偏移量， 如果为正数， 则向下偏移， 反之， 则向上偏移
-         * @return { MD.dom.Range } 当前Range对象
+         * @return { DR.dom.Range } 当前Range对象
          */
         scrollToView: function (win, offset) {
             win = win ? window : domUtils.getWindow(this.document);
@@ -1745,7 +1745,7 @@
         /**
          * 判断给定的Range对象是否和当前Range对象表示的是同一个选区
          * @method equals
-         * @param { MD.dom.Range } 需要判断的Range对象
+         * @param { DR.dom.Range } 需要判断的Range对象
          * @return { Boolean } 如果给定的Range对象与当前Range对象表示的是同一个选区， 则返回true， 否则返回false
          */
         equals: function (rng) {
@@ -1764,7 +1764,7 @@
          * 作为其参数。
          * @method traversal
          * @param { Function }  doFn 对每个遍历的节点要执行的方法， 该方法接受当前遍历的节点作为其参数
-         * @return { MD.dom.Range } 当前range对象
+         * @return { DR.dom.Range } 当前range对象
          * @example
          * ```html
          *
@@ -1807,8 +1807,8 @@
          * @param { Function } filterFn 过滤器， 该函数接受当前遍历的节点作为参数， 如果该节点满足过滤
          *                      规则， 请返回true， 该节点会触发doFn， 否则， 请返回false， 则该节点不
          *                      会触发doFn。
-         * @return { MD.dom.Range } 当前range对象
-         * @see MD.dom.Range:traversal(Function)
+         * @return { DR.dom.Range } 当前range对象
+         * @see DR.dom.Range:traversal(Function)
          * @example
          * ```html
          *

@@ -5,7 +5,7 @@
         _widgetData = {},
         _widgetCallBack = {};
 
-    $.extend(MD, {
+    $.extend(DR, {
         registerUI: function (uiname, fn) {
             $.each(uiname.split(/\s+/), function (i, name) {
                 _mdeditorUI[ name ] = fn;
@@ -14,7 +14,7 @@
         _createContainer: function (id) {
             var $container = $('<div class="mdui-container"></div>');
             var $toolbar = $.mduitoolbar().appendTo($container);
-            var $codeeditor = $('<div class="mdui-codeeditor"></div>').appendTo($container);
+            var $codeeditor = $('<div class="mdui-emon"></div>').appendTo($container);
             var $richeditor = $('<div class="mdui-richeditor"></div>').appendTo($container);
 
             $(Utils.isString(id) ? '#' + id : id).append($container);
@@ -82,7 +82,7 @@
                 }
             });
         },
-        getMDeditor: function (id, options) {
+        getDora: function (id, options) {
             var txt = $('#' + id).text();
 
             var doms = this._createContainer(id),
@@ -100,7 +100,7 @@
             editor.fire('ready');
             return editor;
         },
-        delMDeditor: function (id) {
+        delDora: function (id) {
 
         },
         registerWidget: function (name, pro, cb) {

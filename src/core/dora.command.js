@@ -1,4 +1,4 @@
-MD.extendClass(Editor, {
+DR.extendClass(Editor, {
     _getCommand: function (name) {
         return this._commands[ name.toLowerCase() ];
     },

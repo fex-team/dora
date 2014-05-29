@@ -1,4 +1,4 @@
-MD.LANG['zh-cn'] = {
+DR.LANG['zh-cn'] = {
     'labelMap':{
         'bold': '加粗'
     }
