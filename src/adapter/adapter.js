@@ -14,7 +14,7 @@
         _createContainer: function (id) {
             var $container = $('<div class="mdui-container"></div>');
             var $toolbar = $.mduitoolbar().appendTo($container);
-            var $codeeditor = $('<div class="mdui-emon"></div>').appendTo($container);
+            var $codeeditor = $('<div class="mdui-codeeditor"></div>').appendTo($container);
             var $richeditor = $('<div class="mdui-richeditor"></div>').appendTo($container);
 
             $(Utils.isString(id) ? '#' + id : id).append($container);

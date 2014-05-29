@@ -30,8 +30,8 @@
             'src/ui/widget.js',
             'src/ui/toolbar.js',
             'src/ui/button.js',
-            'emon/core/editor.js',
-            'emon/modules/basestyle.js',
+            'codeeditor/core/editor.js',
+            'codeeditor/modules/basestyle.js',
             'richeditor/core/editor.js',
             'richeditor/plugins/basestyle.js',
             'lang/zh-cn/zh-cn.js'
