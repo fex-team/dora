@@ -2,8 +2,8 @@ var Dora = DR.Dora = DR.createClass('Dora', {
     constructor: function (options) {
         this._options = $.extend(window.DORA_CONFIG || {}, options);
         this.setDefaultOptions(DR.defaultOptions);
-        this._initEvents();
         this._initEditors();
+        this._initEvents();
         this._initShortcutKey();
         this._initModules();
         this._initTools();

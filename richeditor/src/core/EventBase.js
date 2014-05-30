@@ -121,7 +121,8 @@ EventBase.prototype = {
      * ```
      */
     fireEvent:function () {
-        var types = arguments[0];
+        var types = arguments[0],
+            allListeners = getListener(this, 'allevents');
         types = utils.trim(types).split(' ');
         for (var i = 0, ti; ti = types[i++];) {
             var listeners = getListener(this, ti),
@@ -141,6 +142,19 @@ EventBase.prototype = {
             }
             if (t = this['on' + ti.toLowerCase()]) {
                 r = t.apply(this, arguments);
+            }
+            if (ti != 'allevents' && allListeners) {
+                k = allListeners.length;
+                while (k--) {
+                    if(!allListeners[k]) continue;
+                    r = allListeners[k].apply(this, arguments);
+                    if(t === true){
+                        return t;
+                    }
+                    if (t !== undefined) {
+                        r = t;
+                    }
+                }
             }
         }
         return r;

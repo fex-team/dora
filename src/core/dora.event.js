@@ -3,7 +3,13 @@ DR.extendClass(Dora, {
         this._eventCallbacks = {};
     },
     _initDomEvent: function () {
-
+        var me = this;
+//        me.codeeditor.on('allevents', function(){
+//            me.fire.apply(me, arguments);
+//        });
+        me.richeditor.on('allevents', function(){
+            me.fire.apply(me, arguments);
+        });
     },
     _getProxyDomEvent: function (target) {
         var me = this;

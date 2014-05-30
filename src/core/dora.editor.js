@@ -5,10 +5,10 @@ DR.extendClass(Dora, {
     },
     _initCodeEditor: function(){
         var me = this;
-        me.codeeditor = new UE.Editor();
-        me.codeeditor.on('focus', function(){
-            me._currentEditor = me.codeeditor;
-        });
+//        me.codeeditor = new UE.Editor();
+//        me.codeeditor.on('focus', function(){
+//            me._currentEditor = me.codeeditor;
+//        });
     },
     _initRichEditor: function(){
         var me = this;
@@ -18,8 +18,8 @@ DR.extendClass(Dora, {
         });
     },
     render: function(codeContainer, richContainer){
-        this.codeeditor.render(codeContainer);
-        this.codeeditor.render(richContainer);
+//        this.codeeditor.render(codeContainer);
+        this.richeditor.render(richContainer);
     },
     getCurrentEditor: function(){
         return this._currentEditor;
