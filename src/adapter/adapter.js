@@ -90,8 +90,8 @@
 
             editor.$container = doms.$container;
             editor.$toolbar = doms.$toolbar;
-            editor.codeEditor.renderTo(doms.$codeeditor);
-            editor.richEditor.renderTo(doms.$richeditor);
+
+            editor.render(doms.$codeeditor.get(0), doms.$richeditor.get(0));
 
             this._createToolbar(editor, doms.$toolbar);
             this._createMessageHolder(editor);

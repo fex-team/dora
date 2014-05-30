@@ -2,15 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mdeditor</title>
+    <title>Dora</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 
+    <!-- jquery -->
+    <script src="lib/jquery-1.11.1.min.js"></script>
+
+    <!-- ueditor -->
+    <script src="richeditor/ueditor.config.js"></script>
+    <script src="richeditor/ueditor.js"></script>
+
     <!-- emon -->
-    <script src="codeeditor/emon.js"></script>
     <script src="codeeditor/emon.config.js"></script>
+    <script src="codeeditor/emon.js"></script>
 
     <!-- dora -->
-    <script src="lib/jquery-1.11.1.min.js"></script>
     <script src="dora.config.js"></script>
     <script src="dora.js"></script>
     <script src="lang/zh-cn/zh-cn.js"></script>
@@ -20,16 +26,16 @@
 <body>
 
 <div>
-    <h1>Mdeditor</h1>
+    <h1>Dora</h1>
     <div class="main">
-        <div id="mdeditor" style="width:600px;height:400px;">
+        <div id="container" style="width:600px;height:400px;">
             # md编辑器
         </div>
     </div>
 </div>
 
 <script>
-    var md = DR.getDora('mdeditor');
+    var dora = DR.getDora('container');
 </script>
 
 </body>

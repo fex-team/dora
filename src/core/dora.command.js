@@ -1,4 +1,4 @@
-DR.extendClass(Editor, {
+DR.extendClass(Dora, {
     _getCommand: function (name) {
         return this._commands[ name.toLowerCase() ];
     },

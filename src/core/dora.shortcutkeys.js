@@ -1,4 +1,4 @@
-DR.extendClass(Editor, {
+DR.extendClass(Dora, {
     _initShortcutKey: function () {
         this._shortcutkeys = {};
     },

@@ -1,4 +1,4 @@
-DR.extendClass(Editor, {
+DR.extendClass(Dora, {
     _initModules: function () {
 
         var modulesPool = DR.getModules();

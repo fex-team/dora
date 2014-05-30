@@ -1,17 +1,13 @@
-var Editor = DR.Editor = DR.createClass('Editor', {
+var Dora = DR.Dora = DR.createClass('Dora', {
     constructor: function (options) {
         this._options = $.extend(window.DORA_CONFIG || {}, options);
         this.setDefaultOptions(DR.defaultOptions);
         this._initEvents();
-        this._initEditor();
+        this._initEditors();
         this._initShortcutKey();
         this._initModules();
 
         this.fire('editorready');
-    },
-    _initEditor: function () {
-        this.codeEditor = new CodeEditor(this);
-        this.richEditor = new RichEditor(this);
     },
     setDefaultOptions: function (key, val) {
         var obj = {};

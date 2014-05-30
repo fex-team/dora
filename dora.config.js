@@ -1,10 +1,10 @@
 
 (function () {
-    var URL = window.MDEDITOR_HOME_URL || getBaseBir();
+    var URL = window.DORA_HOME_URL || getBaseBir();
 
-    window.MDEDITOR_CONFIG = {
+    window.DORA_CONFIG = {
 
-        MDEDITOR_HOME_URL: URL
+        DORA_HOME_URL: URL
         , toolbars: [
             'fullscreen', 'undo', 'redo', 'bold', 'italic', 'strikethrough', 'image',
             'insertorderedlist', 'insertunorderedlist', 'link', 'drafts'

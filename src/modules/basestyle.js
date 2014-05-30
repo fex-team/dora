@@ -10,6 +10,7 @@ DR.registerModule("basestylemodule", function () {
         "commands": {
             "bold": {
                 execute: function () {
+                    var editor = me.getCurrentEditor();
                     console.log('bold');
                     if (me.codeEditor.isFocus()) {
                         var rng = me.codeEditor.selection.getRange();

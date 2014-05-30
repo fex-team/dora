@@ -6,7 +6,7 @@ var DR =
             createEditor: function (renderTarget, options) {
                 options = options || {};
                 options.renderTo = Utils.isString(renderTarget) ? document.getElementById(renderTarget) : renderTarget;
-                var editor = new Editor(options);
+                var editor = new Dora(options);
                 this.addEditor(options.renderTo, editor);
                 return editor;
             },
