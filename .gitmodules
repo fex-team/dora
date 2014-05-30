@@ -1,0 +1,3 @@
+[submodule "codeeditor"]
+	path = codeeditor
+	url = https://github.com/fex-team/emon.git

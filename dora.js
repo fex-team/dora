@@ -30,15 +30,27 @@
             'src/ui/widget.js',
             'src/ui/toolbar.js',
             'src/ui/button.js',
-            'codeeditor/core/editor.js',
-            'codeeditor/modules/basestyle.js',
             'richeditor/core/editor.js',
             'richeditor/plugins/basestyle.js',
             'lang/zh-cn/zh-cn.js'
         ],
-        baseURL = '';
+        baseURL = getBaseBir();
+
     for (var i=0,pi;pi = paths[i++];) {
         document.write('<script type="text/javascript" src="'+ baseURL + pi +'"></script>');
+    }
+
+    function getBaseBir(){
+        var srcipts = document.getElementsByTagName('script'),
+            src = srcipts[srcipts.length - 1].src;
+
+        if (src) {
+            var a = document.createElement('a');
+            a.href = src;
+            a.href = a.href;
+            return a.protocol + '//' + a.host + a.pathname.substr(0, a.pathname.lastIndexOf('/') + 1);
+        }
+        return '';
     }
 
 })();
