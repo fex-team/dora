@@ -1,4 +1,4 @@
-DR.registerUI('bold italic strikethrough undo redo image insertorderedlist insertunorderedlist link drafts',
+DR.registerUI('bold italic strikethrough undo redo insertorderedlist insertunorderedlist drafts',
     function (name) {
         var me = this;
         var $btn = $.mduibutton({

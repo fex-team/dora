@@ -1,18 +1,18 @@
 /*modal 类*/
-UM.ui.define('modal', {
-    tpl: '<div class="edui-modal" tabindex="-1" >' +
-    '<div class="edui-modal-header">' +
-    '<div class="edui-close" data-hide="modal"></div>' +
-    '<h3 class="edui-title"><%=title%></h3>' +
+DR.ui.define('modal', {
+    tpl: '<div class="mdui-modal" tabindex="-1" >' +
+    '<div class="mdui-modal-header">' +
+    '<div class="mdui-close" data-hide="modal"></div>' +
+    '<h3 class="mdui-title"><%=title%></h3>' +
     '</div>' +
-    '<div class="edui-modal-body"  style="<%if(width){%>width:<%=width%>px;<%}%>' +
+    '<div class="mdui-modal-body"  style="<%if(width){%>width:<%=width%>px;<%}%>' +
     '<%if(height){%>height:<%=height%>px;<%}%>">' +
     ' </div>' +
     '<% if(cancellabel || oklabel) {%>' +
-    '<div class="edui-modal-footer">' +
-    '<div class="edui-modal-tip"></div>' +
-    '<%if(oklabel){%><div class="edui-btn edui-btn-primary" data-ok="modal"><%=oklabel%></div><%}%>' +
-    '<%if(cancellabel){%><div class="edui-btn" data-hide="modal"><%=cancellabel%></div><%}%>' +
+    '<div class="mdui-modal-footer">' +
+    '<div class="mdui-modal-tip"></div>' +
+    '<%if(oklabel){%><div class="mdui-btn mdui-btn-primary" data-ok="modal"><%=oklabel%></div><%}%>' +
+    '<%if(cancellabel){%><div class="mdui-btn" data-hide="modal"><%=cancellabel%></div><%}%>' +
     '</div>' +
     '<%}%></div>',
     defaultOpt: {
@@ -41,7 +41,7 @@ UM.ui.define('modal', {
             .delegate('[data-ok="modal"]', 'click', $.proxy(me.ok, me));
 
         $('[data-hide="modal"],[data-ok="modal"]', me.root()).hover(function () {
-            $(this).toggleClass('edui-hover')
+            $(this).toggleClass('mdui-hover')
         });
     },
     toggle: function () {
@@ -69,10 +69,10 @@ UM.ui.define('modal', {
         })
     },
     showTip: function (text) {
-        $('.edui-modal-tip', this.root()).html(text).fadeIn();
+        $('.mdui-modal-tip', this.root()).html(text).fadeIn();
     },
     hideTip: function (text) {
-        $('.edui-modal-tip', this.root()).fadeOut(function () {
+        $('.mdui-modal-tip', this.root()).fadeOut(function () {
             $(this).html('');
         });
     },
@@ -119,7 +119,7 @@ UM.ui.define('modal', {
     backdrop: function (callback) {
         var me = this;
         if (me.data("isShown") && me.data("options").backdrop) {
-            me.$backdrop = $('<div class="edui-modal-backdrop" />').click(
+            me.$backdrop = $('<div class="mdui-modal-backdrop" />').click(
                 me.data("options").backdrop == 'static' ?
                     $.proxy(me.root()[0].focus, me.root()[0])
                     : $.proxy(me.hide, me)
@@ -149,7 +149,7 @@ UM.ui.define('modal', {
         me.hide();
     },
     getBodyContainer: function () {
-        return this.root().find('.edui-modal-body')
+        return this.root().find('.mdui-modal-body')
     }
 });
 

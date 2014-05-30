@@ -1,6 +1,8 @@
 var DR =
     window.DR = function () {
-        var instanceMap = {}, instanceId = 0;
+        var instanceMap = {},
+            instanceId = 0;
+
         return {
             version: '1.0.0',
             createEditor: function (renderTarget, options) {
@@ -17,6 +19,7 @@ var DR =
                 } else {
                     id = target.id || ( "MD_INSTANCE_" + instanceId++ );
                 }
+                editor.eid = instanceId;
                 instanceMap[ id ] = editor;
             },
             getEditor: function (target, options) {

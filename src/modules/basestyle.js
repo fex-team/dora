@@ -1,6 +1,14 @@
 DR.registerModule("basestylemodule", function () {
     var me = this;
 
+    function getExecute(cmd){
+        return function(){
+            var editor = me.getCurrentEditor();
+            editor.execCommand(cmd);
+            me.syncer.sync(editor);
+        }
+    }
+
     return {
         "init": function () {
 
@@ -9,30 +17,19 @@ DR.registerModule("basestylemodule", function () {
         },
         "commands": {
             "bold": {
-                execute: function () {
-                    var editor = me.getCurrentEditor();
-                    console.log('bold');
-                    if (me.codeEditor.isFocus()) {
-                        var rng = me.codeEditor.selection.getRange();
-                        rng.getPlainTxt();
-                    }
-
-                },
+                execute: getExecute('bold'),
                 queryState: function () {
 
                 }
             },
             "italic": {
-                execute: function () {
-
-                },
+                execute: getExecute('italic'),
                 queryState: function () {
 
                 }
             },
             "strikethrough": {
-                execute: function () {
-                },
+                execute: getExecute('strikethrough'),
                 queryState: function () {
 
                 }

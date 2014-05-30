@@ -1,0 +1,10 @@
+/*图片上传*/
+.mdui-dialog-image-body {
+    width: 700px;
+    height: 400px;
+}
+/*链接*/
+.mdui-dialog-link-body{
+    width:400px;
+    height:200px;
+}

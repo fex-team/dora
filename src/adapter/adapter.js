@@ -158,6 +158,9 @@
             pro.width && $widget.width(pro.width);
 
         },
+        setTopEditor: function(){
+
+        },
         createToolbar: function (options, editor) {
 
         }

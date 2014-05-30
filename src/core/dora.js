@@ -6,8 +6,13 @@ var Dora = DR.Dora = DR.createClass('Dora', {
         this._initEditors();
         this._initShortcutKey();
         this._initModules();
+        this._initTools();
 
         this.fire('editorready');
+    },
+    _initTools: function () {
+        this.syncer = new Syncer(this);
+        this.mdparser = new MdParser(this);
     },
     setDefaultOptions: function (key, val) {
         var obj = {};

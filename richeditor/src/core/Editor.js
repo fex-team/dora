@@ -440,6 +440,7 @@
                     }
                 })
             }
+            this.fireEvent('ready');
         },
 
         /**

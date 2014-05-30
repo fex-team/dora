@@ -5,7 +5,8 @@
 
     DR.defaultOptions = {
         zIndex: 10,
-        lang: 'zh-cn'
+        lang: 'zh-cn',
+        labelMap: {}
     };
 
 })();

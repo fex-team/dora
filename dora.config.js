@@ -5,10 +5,11 @@
     window.DORA_CONFIG = {
 
         DORA_HOME_URL: URL
-        , toolbars: [
+        ,toolbars: [
             'fullscreen', 'undo', 'redo', 'bold', 'italic', 'strikethrough', 'image',
             'insertorderedlist', 'insertunorderedlist', 'link', 'drafts'
         ]
+        ,serverUrl: URL + 'server/controller.php'
 
     };
 
