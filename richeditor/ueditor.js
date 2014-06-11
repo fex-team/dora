@@ -45,7 +45,6 @@
             'plugins/time.js',
             'plugins/rowspacing.js',
             'plugins/lineheight.js',
-            'plugins/insertcode.js',
             'plugins/cleardoc.js',
             'plugins/anchor.js',
             'plugins/wordcount.js',
@@ -61,11 +60,6 @@
             'plugins/fiximgclick.js',
             'plugins/autolink.js',
             'plugins/autoheight.js',
-            'plugins/video.js',
-            'plugins/table.core.js',
-            'plugins/table.cmds.js',
-            'plugins/table.action.js',
-            'plugins/table.sort.js',
             'plugins/shortcutmenu.js',
             'plugins/basestyle.js',
             'plugins/elementpath.js',
@@ -75,16 +69,10 @@
             'plugins/catchremoteimage.js',
             'plugins/snapscreen.js',
             'plugins/insertparagraph.js',
-            'plugins/webapp.js',
             'plugins/template.js',
             'plugins/music.js',
             'plugins/autoupload.js',
-            'plugins/autosave.js',
-            'plugins/charts.js',
-            'plugins/section.js',
-            'plugins/simpleupload.js',
-            'plugins/serverparam.js',
-            'plugins/insertfile.js'
+            'plugins/autosave.js'
         ],
         baseURL = getBaseBir() + 'src/';
 

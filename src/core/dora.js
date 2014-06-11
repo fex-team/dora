@@ -13,6 +13,9 @@ var Dora = DR.Dora = DR.createClass('Dora', {
     _initTools: function () {
         this.syncer = new Syncer(this);
         this.mdparser = new MdParser(this);
+
+        this.syncer._initSyncer();
+        this.mdparser._initParser();
     },
     setDefaultOptions: function (key, val) {
         var obj = {};

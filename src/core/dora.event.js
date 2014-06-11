@@ -4,9 +4,9 @@ DR.extendClass(Dora, {
     },
     _initDomEvent: function () {
         var me = this;
-//        me.codeeditor.on('allevents', function(){
-//            me.fire.apply(me, arguments);
-//        });
+        me.codeeditor.on('allevents', function(){
+            me.fire.apply(me, arguments);
+        });
         me.richeditor.on('allevents', function(){
             me.fire.apply(me, arguments);
         });

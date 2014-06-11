@@ -12,6 +12,7 @@
             'src/core/dr.defaultoptions.js',
             'src/core/dr.module.js',
             'src/core/dr.syncer.js',
+            'src/core/dr.mdparser.js',
             'src/core/dom.domutils.js',
             'src/core/dom.range.js',
             'src/core/dom.selection.js',
@@ -21,7 +22,6 @@
             'src/core/dora.editor.js',
             'src/core/dora.command.js',
             'src/core/dora.module.js',
-            'src/core/mdparser.js',
             'src/modules/basestyle.js',
             'src/modules/drafts.js',
             'src/adapter/adapter.js',
@@ -32,6 +32,7 @@
             'src/ui/button.js',
             'src/ui/modal.js',
             'src/ui/widget.js',
+            'src/parser/gfm.js',
             'lang/zh-cn/zh-cn.js'
         ],
         baseURL = getBaseBir();

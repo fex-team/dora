@@ -8,6 +8,9 @@
     <!-- jquery -->
     <script src="lib/jquery-1.11.1.min.js"></script>
 
+    <!-- diff -->
+    <script src="lib/diff/diff_match_patch.js"></script>
+
     <!-- ueditor -->
     <script src="richeditor/ueditor.config.js"></script>
     <script src="richeditor/ueditor.js"></script>
@@ -35,6 +38,17 @@
 
 <script>
     var dora = DR.getDora('container');
+
+    setTimeout(function(){
+        //增加
+        dora.syncer.makeMdPatch('1\n\n2\n\n3\n\n4\n\n5\n\n6', '1\n\n2\n\n3\n\n8\n\n4\n\n5\n\n6');
+        //删除
+        dora.syncer.makeMdPatch('1\n\n2\n\n3\n\n4\n\n5\n\n6', '1\n\n2\n\n4\n\n5\n\n6');
+        //修改
+        dora.syncer.makeMdPatch('1\n\n2\n\n3\n\n4\n\n5\n\n6', '1\n\n2\n\n8\n\n4\n\n5\n\n6');
+        //相同
+        dora.syncer.makeMdPatch('1\n\n2\n\n3\n\n4\n\n5\n\n6', '1\n\n2\n\n3\n\n4\n\n5\n\n6');
+    }, 400);
 </script>
 
 </body>

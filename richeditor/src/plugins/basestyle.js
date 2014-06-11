@@ -82,7 +82,8 @@ UE.plugins['basestyle'] = function(){
             'bold':['strong','b'],
             'italic':['em','i'],
             'subscript':['sub'],
-            'superscript':['sup']
+            'superscript':['sup'],
+            'del':['del']
         },
         getObj = function(editor,tagNames){
             return domUtils.filterNodeList(editor.selection.getStartElementPath(),tagNames);
