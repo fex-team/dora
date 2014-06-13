@@ -21,7 +21,7 @@
 
     <!-- dora -->
     <script src="dora.config.js"></script>
-    <script src="dora.js"></script>
+    <script src="import.js"></script>
     <script src="lang/zh-cn/zh-cn.js"></script>
     <link rel="stylesheet" href="theme/dora.css"/>
 
@@ -38,17 +38,6 @@
 
 <script>
     var dora = DR.getDora('container');
-
-    setTimeout(function(){
-        //增加
-        dora.syncer.makeMdPatch('1\n\n2\n\n3\n\n4\n\n5\n\n6', '1\n\n2\n\n3\n\n8\n\n4\n\n5\n\n6');
-        //删除
-        dora.syncer.makeMdPatch('1\n\n2\n\n3\n\n4\n\n5\n\n6', '1\n\n2\n\n4\n\n5\n\n6');
-        //修改
-        dora.syncer.makeMdPatch('1\n\n2\n\n3\n\n4\n\n5\n\n6', '1\n\n2\n\n8\n\n4\n\n5\n\n6');
-        //相同
-        dora.syncer.makeMdPatch('1\n\n2\n\n3\n\n4\n\n5\n\n6', '1\n\n2\n\n3\n\n4\n\n5\n\n6');
-    }, 400);
 </script>
 
 </body>

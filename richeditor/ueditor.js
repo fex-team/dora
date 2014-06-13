@@ -59,7 +59,6 @@
             'plugins/keystrokes.js',
             'plugins/fiximgclick.js',
             'plugins/autolink.js',
-            'plugins/autoheight.js',
             'plugins/shortcutmenu.js',
             'plugins/basestyle.js',
             'plugins/elementpath.js',
